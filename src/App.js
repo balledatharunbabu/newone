@@ -1,13 +1,16 @@
 import logo from './logo.svg';
-import DragImageExample from './Components/example'
+
+import Flow from './Components/Flow'
 import Headerbar from './Components/Header'
-import Menu from './Components/Menu';
+
+import Menu  from './Components/Menu';
 function App() {
   return (
     <div >
-      <Headerbar></Headerbar>
-      <Menu></Menu>
-      {/* <DragImageExample></DragImageExample> */}
+      <Headerbar></Headerbar> 
+   
+    <Flow></Flow>
+  
     </div>
   );
 }

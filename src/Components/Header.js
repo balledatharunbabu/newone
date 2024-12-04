@@ -3,7 +3,7 @@ import '../Style/Configuration/Configuration.css'
 
 function Headerbar() {
   return (
-    <div className="Header" style={{ display: 'flex', gap:'80vh' }}>
+    <div className="Header" style={{ display: 'flex', gap:'70vh' }}>
  <div style={{marginTop:'3vh'}}>
  <Button style={{color:'#bb330d',background:'rgb(28, 25, 25)'}}>Configuration</Button>
  </div>

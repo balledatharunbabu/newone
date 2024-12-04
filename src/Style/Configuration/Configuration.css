@@ -5,11 +5,11 @@
     background-color: rgb(28, 25, 25);
 }
 .Menu{
-    height: 90vh;
-    width:13%;
+    height: 100vh;
+    width:12%;
     background-color:#dbd8d8;
 }
-.Adapter{
+.Adapter,.Options{
     flex-direction: column;
     display: flex;
    

@@ -2,78 +2,56 @@ import { Button } from "@mui/material";
 import '../Style/Configuration/Configuration.css'
 import Flow from '../Components/Flow'
 import { useState } from "react";
+import { useDnD } from "./DnDContext";
 function Menu(){
-
-    const [isDragging, setIsDragging] = useState(false);
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-  
-    const handleMouseDown = (e) => {
-        setIsDragging(true);
-        setPosition({ x: e.clientX, y: e.clientY }); // Initial position
-      };
-    
-      const handleMouseMove = (e) => {
-        if (isDragging) {
-          setPosition({ x: e.clientX, y: e.clientY }); // Update position
-        }
-      };
-    
-      const handleMouseUp = () => {
-        setIsDragging(false);
-      };
-
-
+  const [_, setType] = useDnD();
+ 
+  const onDragStart = (event, nodeType) => {
+    setType(nodeType);
+    console.log(nodeType)
+    event.dataTransfer.effectAllowed = 'move';
+  };
+  const [showOptions, setShowOptions] = useState(false);
+const handleButtonClick = () => setShowOptions(!showOptions);
     return(
-<div className="drawBoard" style={{display:'flex'}}
-  onMouseMove={handleMouseMove}
-  onMouseUp={handleMouseUp}
->
 
-<div className="Menu" >
-    <div style={{ background: 'black', color: 'white', height: '50px', display: 'flex', alignItems: 'center' }}>
-        <span style={{ marginLeft: '50px' }}>ADAPTERS</span>
-    </div>
-
-             <div className="Adapter" style={{background:'#dbd8d8'}}
-           
-
-
-             >
-            <Button sx={{padding:'25px',color:'black',marginTop:'30px'}}
-                  
-            onMouseDown={handleMouseDown}
-                    
-         >Kafka</Button>
-      {isDragging && (
-            <img
-              src="/kafka.png" // Replace with your image path in the public folder
-              alt="Dragged"
-              style={{
-                position: 'absolute',
-                top: position.y,
-                left: position.x,
-                width: '70px',
-                height: '50px',
-                pointerEvents: 'none', // Prevent interference with mouse events
-                transform: 'translate(-50%, -50%)', // Center the image at the cursor
-              }}
-            />
-          )}
-        </div>
-       
+    
+<div className="Menu">
+<div style={{ background: 'black', color: 'white', height: '40px', display: 'flex', alignItems: 'center',width:'' }}>
+<span style={{ marginLeft: '50px' }}>ADAPTERS</span>
+</div>
+<div className="Adapter" style={{ background: '#dbd8d8' }}>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'Amq')} draggable>ActiveMq</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'ibmMQ')} draggable>IBMMQ</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'kafka')} draggable>Kafka</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'rest')} draggable>REST</Button>
 </div>
 
-   <div>
-   
-   <div className="inbound">
-
-
+<div style={{ background: 'black', color: 'white', height: '40px', display: 'flex', alignItems: 'center', marginTop: '30px' }}>
+<span style={{ marginLeft: '50px', cursor: 'pointer' }} onClick={handleButtonClick}>
+STAGES
+</span>
 </div>
-   </div>
+
+<div className="Options" style={{ background: '#dbd8d8', marginTop: '5px' }}>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'source')} draggable >
+Source
+</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }}  onDragStart={(event) => onDragStart(event, 'modify')} draggable >
+Modify
+</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }}  onDragStart={(event) => onDragStart(event, 'selector')} draggable >
+Selector
+</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'target')} draggable  >
+Target
+</Button>
 </div>
+
+      </div>
 
   
-    )
+    );
 }
 
 export default Menu;
