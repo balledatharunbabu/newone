@@ -7,6 +7,7 @@ export const DnDProvider = ({ children }) => {
  
   return (
     <DnDContext.Provider value={[type, setType]}>
+    
       {children}
     </DnDContext.Provider>
   );
@@ -15,5 +16,6 @@ export const DnDProvider = ({ children }) => {
 export default DnDContext;
  
 export const useDnD = () => {
+
   return useContext(DnDContext);
 }

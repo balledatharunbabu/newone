@@ -5,10 +5,11 @@ import { useState } from "react";
 import { useDnD } from "./DnDContext";
 function Menu(){
   const [_, setType] = useDnD();
- 
+ const[select,dragselect]=useState()
   const onDragStart = (event, nodeType) => {
     setType(nodeType);
-    console.log(nodeType)
+
+    // console.log(nodeType)
     event.dataTransfer.effectAllowed = 'move';
   };
   const [showOptions, setShowOptions] = useState(false);
@@ -18,7 +19,7 @@ const handleButtonClick = () => setShowOptions(!showOptions);
     
 <div className="Menu">
 <div style={{ background: 'black', color: 'white', height: '40px', display: 'flex', alignItems: 'center',width:'' }}>
-<span style={{ marginLeft: '50px' }}>ADAPTERS</span>
+<span style={{ marginLeft: '10px' }}>Inbound Adapters</span>
 </div>
 <div className="Adapter" style={{ background: '#dbd8d8' }}>
 <Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'Amq')} draggable>ActiveMq</Button>
@@ -46,6 +47,15 @@ Selector
 <Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'target')} draggable  >
 Target
 </Button>
+</div>
+<div style={{ background: 'black', color: 'white', height: '40px', display: 'flex', alignItems: 'center',width:'' }}>
+<span style={{ marginLeft: '10px' }}>Outbound Adapters</span>
+</div>
+<div className="Adapter" style={{ background: '#dbd8d8' }}>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'Amqout')} draggable>ActiveMq</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'ibmMQout')} draggable>IBMMQ</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'kafkaout')} draggable>Kafka</Button>
+<Button sx={{ padding: '5px', color: 'black', marginTop: '5px' }} onDragStart={(event) => onDragStart(event, 'restout')} draggable>REST</Button>
 </div>
 
       </div>

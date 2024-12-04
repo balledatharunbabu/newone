@@ -1,27 +1,25 @@
-import React, { useRef, useCallback } from 'react';
-import { ReactFlow, ReactFlowProvider, addEdge, useNodesState, useEdgesState, Controls, useReactFlow, Background } from 'reactflow';  // Import ReactFlowProvider
+import React, { useRef, useCallback, useState } from 'react';
+import { ReactFlow, ReactFlowProvider, addEdge, useNodesState, useEdgesState, useReactFlow, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import Menu from './Menu'; // Import Sidebar
-import {RestAdapter} from '../CustomNodes/Adapters'
-import {IBMMQAdapter} from '../CustomNodes/Adapters'
-import {KafkaAdapter} from '../CustomNodes/Adapters'
-import {AmqAdapter} from '../CustomNodes/Adapters'
-
-import {Modify,Selector,Target,Source} from '../CustomNodes/Stages'
-
+import Menu from './Menu';
+import { RestAdapter, IBMMQAdapter, KafkaAdapter, AmqAdapter } from '../CustomNodes/Adapters';
+import { Modify, Selector, Target, Source } from '../CustomNodes/Stages';
+import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from '../CustomNodes/OutBoundAdapters';
 import { DnDProvider, useDnD } from './DnDContext';
 
-
 const nodeTypes = {
-  kafka: KafkaAdapter, 
-  rest:RestAdapter,
-  ibmMQ:IBMMQAdapter,
-  Amq:AmqAdapter,
-  modify:Modify,
-  selector:Selector,
-  source:Source,
-  target:Target
-
+  kafka: KafkaAdapter,
+  rest: RestAdapter,
+  ibmMQ: IBMMQAdapter,
+  Amq: AmqAdapter,
+  modify: Modify,
+  selector: Selector,
+  source: Source,
+  target: Target,
+  restout: RestOutAdapter,
+  kafkaout: KafkaOutAdapter,
+  ibmMQout: IBMMQOutAdapter,
+  Amqout: AmqOutAdapter,
 };
 
 const initialNodes = [];
@@ -35,8 +33,16 @@ const DnDFlow = () => {
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
 
+ 
+
+  const [selectedNodeType, setSelectedNodeType] = useState('');
+  const [Amq, setAmq] = useState(false);
+  const [Kafka, setKafka] = useState(false);
+  const [Rest, setRest] = useState(false);
+  const [Ibm, setIbm] = useState(false);
+
   const onConnect = useCallback(
-    (params) => setEdges((eds) => addEdge(params, eds)),
+    (params) => setEdges((eds) => addEdge({ ...params, type: 'straight' }, eds)),
     [],
   );
 
@@ -62,43 +68,76 @@ const DnDFlow = () => {
         id: getId(),
         type,
         position,
-       data: { label: `Node of type: ${type}` }, // Pass label here
+        data: { label: `Node of type: ${type}` },
       };
 
       setNodes((nds) => nds.concat(newNode));
+
+      // Update the last dragged node type
+   
     },
     [screenToFlowPosition, type],
   );
 
-  return (
-    <div className="dndflow" style={{display:'flex'}}>
-        <Menu></Menu>
-      <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ height: '100vh', width: '88%'}}>
+  const onNodeClick = useCallback(
+    (_, node) => {
+      // Update the selected node type when a node is clicked
+      setSelectedNodeType(node.type);
 
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onDrop={onDrop}
-          onDragOver={onDragOver}
-          nodeTypes={nodeTypes}
-          fitView
-          style={{backgroundColor: "white"}}
-        >
-          <Background />
-        
-        </ReactFlow>
+      if(node.type === 'Amq')
+      {
+        setAmq(!Amq)
+      }
+      if(node.type === 'kafka')
+        {
+          setKafka(!Kafka)
+        }
+    },
+    [],
+  );
+
+  return (
+    <>
+      <div className="dndflow" style={{ display: 'flex' }}>
+        <Menu />
+        <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ height: '100vh', width: '88%' }}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onNodeClick={onNodeClick} // Handle node clicks
+            nodeTypes={nodeTypes}
+            fitView
+            style={{ backgroundColor: 'white' }}
+          >
+            <Background />
+          </ReactFlow>
+        </div>
       </div>
-    
-    
-    </div>
+      <div>
+   
+        {/* <h1>{selectedNodeType}</h1> */}
+        {
+          Amq && (
+            <div>Activemq</div>
+          )
+        }
+        {
+          Kafka  && (
+            <div>Kafka</div>
+          )
+        }
+      </div>
+    </>
   );
 };
 
 export default () => (
-<ReactFlowProvider>
+  <ReactFlowProvider>
     <DnDProvider>
       <DnDFlow />
     </DnDProvider>
