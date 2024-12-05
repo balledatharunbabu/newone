@@ -6,7 +6,8 @@ import { RestAdapter, IBMMQAdapter, KafkaAdapter, AmqAdapter } from '../CustomNo
 import { Modify, Selector, Target, Source } from '../CustomNodes/Stages';
 import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from '../CustomNodes/OutBoundAdapters';
 import { DnDProvider, useDnD } from './DnDContext';
-
+import Folders from '../MenuBar/Folders'
+import Header from '../MenuBar/Header'
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
@@ -22,6 +23,7 @@ const nodeTypes = {
   Amqout: AmqOutAdapter,
 };
 
+
 const initialNodes = [];
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -33,8 +35,23 @@ const DnDFlow = () => {
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
 
- 
 
+  const isValidConnection = (connection) => {
+    console.log(connection.source); 
+    if (connection.source === 'Amq' && connection.target === 'source') {
+      return true;
+    }
+    return false;
+  };
+  
+
+  const onConnectStart = (_, { nodeId, handleType }) =>
+    console.log('on connect start', { nodeId, handleType });
+  const onConnectEnd = (event) => console.log('on connect end', event);
+
+
+ 
+  const[selectedEdgeType,setSelectedEdgeType]=useState('');
   const [selectedNodeType, setSelectedNodeType] = useState('');
   const [Amq, setAmq] = useState(false);
   const [Kafka, setKafka] = useState(false);
@@ -98,9 +115,9 @@ const DnDFlow = () => {
 
   return (
     <>
-      <div className="dndflow" style={{ display: 'flex' }}>
-        <Menu />
-        <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ height: '100vh', width: '88%' }}>
+      <div className="dndflow" style={{ }}>
+      <Header></Header>
+        <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ height: '60vh', width: '88%',marginLeft:'18%' }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -109,8 +126,12 @@ const DnDFlow = () => {
             onConnect={onConnect}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            onNodeClick={onNodeClick} // Handle node clicks
+            onNodeClick={onNodeClick}
+            onConnectStart={onConnectStart}
+            onConnectEnd={onConnectEnd}
+            isValidConnection={isValidConnection}
             nodeTypes={nodeTypes}
+
             fitView
             style={{ backgroundColor: 'white' }}
           >
