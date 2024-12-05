@@ -8,6 +8,10 @@ import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from 
 import { DnDProvider, useDnD } from './DnDContext';
 import Folders from '../MenuBar/Folders'
 import Header from '../MenuBar/Header'
+import AmqConfig from '../AdapterConfigurations/amqConfig'
+import KafkaConfig from '../AdapterConfigurations/kafkaConfig';
+import IbmMqConfig from '../AdapterConfigurations/ibmMqConfig';
+import RestConfig from '../AdapterConfigurations/restConfig';
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
@@ -36,13 +40,13 @@ const DnDFlow = () => {
   const [type] = useDnD();
 
 
-  const isValidConnection = (connection) => {
-    console.log(connection.source); 
-    if (connection.source === 'Amq' && connection.target === 'source') {
-      return true;
-    }
-    return false;
-  };
+  // const isValidConnection = (connection) => {
+  //   console.log(connection.source); 
+  //   if (connection.source === 'Amq' && connection.target === 'source') {
+  //     return true;
+  //   }
+  //   return false;
+  // };
   
 
   const onConnectStart = (_, { nodeId, handleType }) =>
@@ -101,14 +105,32 @@ const DnDFlow = () => {
       // Update the selected node type when a node is clicked
       setSelectedNodeType(node.type);
 
-      if(node.type === 'Amq')
-      {
-        setAmq(!Amq)
-      }
-      if(node.type === 'kafka')
-        {
-          setKafka(!Kafka)
+      setAmq((prevAmq) => {
+        if (node.type === 'Amq' ||node.type === 'Amqout') {
+          return !prevAmq; // Toggle Amq state
         }
+        return false; // Reset to false if it's not 'Amq'
+      });
+      setKafka((prevKafka) => {
+        if (node.type === 'kafka' ||node.type === 'kafkaout') {
+          return !prevKafka;
+        }
+        return false;
+      });
+  
+      setRest((prevRest) => {
+        if (node.type === 'rest' ||node.type === 'restout') {
+          return !prevRest; 
+        }
+        return false; 
+      });
+  
+      setIbm((prevIbm) => {
+        if (node.type === 'ibmMQ' ||node.type === 'ibmMQout') {
+          return !prevIbm; 
+        }
+        return false; 
+      });
     },
     [],
   );
@@ -117,7 +139,8 @@ const DnDFlow = () => {
     <>
       <div className="dndflow" style={{ }}>
       <Header></Header>
-        <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ height: '60vh', width: '88%',marginLeft:'18%' }}>
+        <div className="reactflow-wrapper" ref={reactFlowWrapper} 
+        style={{ height: '60vh', width: '82%',marginLeft:'18%' ,overflow:'hidden'}}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -129,7 +152,7 @@ const DnDFlow = () => {
             onNodeClick={onNodeClick}
             onConnectStart={onConnectStart}
             onConnectEnd={onConnectEnd}
-            isValidConnection={isValidConnection}
+           // isValidConnection={isValidConnection}
             nodeTypes={nodeTypes}
 
             fitView
@@ -140,18 +163,10 @@ const DnDFlow = () => {
         </div>
       </div>
       <div>
-   
-        {/* <h1>{selectedNodeType}</h1> */}
-        {
-          Amq && (
-            <div>Activemq</div>
-          )
-        }
-        {
-          Kafka  && (
-            <div>Kafka</div>
-          )
-        }
+      {Amq && ( <div><AmqConfig /></div>)}
+      {Kafka && <div><KafkaConfig/></div>}
+      {Ibm && ( <div><IbmMqConfig /></div>)}
+      {Rest && <div><RestConfig/></div>}
       </div>
     </>
   );

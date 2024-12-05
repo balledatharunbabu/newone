@@ -10,8 +10,18 @@ Card, CardContent
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
 
-
+import { useDnD } from "../Components/DnDContext";
 export default function StagesCard({ updateExpandedStage, expandedStage }) {
+
+    const [_, setType] = useDnD();
+    const[select,dragselect]=useState()
+     const onDragStart = (event, nodeType) => {
+       setType(nodeType);
+   
+       // console.log(nodeType)
+       event.dataTransfer.effectAllowed = 'move';
+     };
+   
 
 const handleClickStages = () => {
 updateExpandedStage(!expandedStage);
@@ -67,7 +77,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}
+}} onDragStart={(event) => onDragStart(event, 'source')} draggable
 >
 <ListItemIcon>
 <PersonIcon />
@@ -82,7 +92,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}>
+}}  onDragStart={(event) => onDragStart(event, 'modify')} draggable>
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>
@@ -96,7 +106,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}>
+}}  onDragStart={(event) => onDragStart(event, 'selector')} draggable>
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>
@@ -110,7 +120,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}>
+}} onDragStart={(event) => onDragStart(event, 'target')} draggable >
 <ListItemIcon>
 <PersonIcon />
 </ListItemIcon>

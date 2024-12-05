@@ -5,7 +5,7 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	Collapse,
-	Card, CardContent
+	Card, CardContent,Avatar
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import PersonIcon from '@mui/icons-material/Person';
@@ -47,7 +47,7 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 				}}
 			>
 				<ListItemButton onClick={handleClickEndPoints}
-					// disablePadding
+					disablePadding
 					sx={{
 						boxShadow: "inherit",
 						'&:hover': {
@@ -78,7 +78,11 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 						}} onDragStart={(event) => onDragStart(event, 'Amq')} draggable
 						>
 							<ListItemIcon>
-								
+							<Avatar
+								alt="ActiveMQ"
+								src="./IconComponents/Activemq.png"
+								sx={{ width: 50, height: 50, borderRadius: "50%" }}
+								/>
 							</ListItemIcon>
 							<ListItemText primary="ActiveMQ" />
 						</ListItemButton>
@@ -90,9 +94,13 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 								boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 								color: "white"
 							},
-						}}>
+						}} onDragStart={(event) => onDragStart(event, 'kafka')} draggable>
 							<ListItemIcon>
-								<PersonIcon />
+							<Avatar
+								alt="Kafka"
+								src="./IconComponents/Kafka.png"
+								sx={{ width: 50, height: 50, borderRadius: "50%" }}
+								/>
 							</ListItemIcon>
 							<ListItemText primary="Kafka" />
 						</ListItemButton>
@@ -104,9 +112,13 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 								boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 								color: "white"
 							},
-						}}>
+						}} onDragStart={(event) => onDragStart(event, 'ibmMQ')} draggable>
 							<ListItemIcon>
-								<PersonIcon />
+							<Avatar
+								alt="IBMMQ"
+								src="./IconComponents/IbmMQ.png"
+								sx={{ width: 50, height: 50, borderRadius: "50%" }}
+								/>
 							</ListItemIcon>
 							<ListItemText primary="IBMMQ" />
 						</ListItemButton>
@@ -118,9 +130,13 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 								boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 								color: "white"
 							},
-						}}>
+						}} onDragStart={(event) => onDragStart(event, 'rest')} draggable>
 							<ListItemIcon>
-								<PersonIcon />
+							<Avatar
+								alt="RestAPI"
+								src="./IconComponents/RestAPI.png"
+								sx={{ width: 50, height: 50, borderRadius: "50%" }}
+								/>
 							</ListItemIcon>
 							<ListItemText primary="REST API" />
 						</ListItemButton>

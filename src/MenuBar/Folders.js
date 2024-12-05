@@ -38,19 +38,18 @@ anchor="left"
 open={drawerOpen} // Controls if the Drawer is open or closed
 onClose={toggleDrawer} // Close the drawer when clicking outside
 sx={{
-'& .MuiDrawer-paper': {
-borderRadius: '16px',
-position: 'absolute',
-top: '80px', // Adjust this value based on your AppBar height (default is 64px for AppBar in desktop view)
-paddingTop: '16px', // Padding inside the drawer
-paddingBottom: '16px',
-left: '10px', // Align with the MenuIcon
-width: '18%', // Adjust as per your design
-boxSizing: 'border-box',
-overflow: 'auto',
-height:'100%'
-},
-}}
+    '& .MuiDrawer-paper': {
+    borderRadius: '16px',
+    position: 'absolute',
+    top: '80px', // Adjust this value based on your AppBar height (default is 64px for AppBar in desktop view)
+    paddingTop: '16px', // Padding inside the drawer
+    paddingBottom: '72px',
+    left: '10px', // Align with the MenuIcon
+    width: '240px', // Adjust as per your design
+    boxSizing: 'border-box',
+    // overflowY: "auto", // Enable vertical scrolling
+    },
+    }}
 >
     <Box sx={{msOverflowY:'auto'}}>
         <InEndPointCard updateInExpandedEndPoint={handleClickInEndPoints} inexpandedEndPoint={inexpandedEndPoint} />
