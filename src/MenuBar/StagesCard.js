@@ -56,9 +56,7 @@ color: "white",
 },
 }}
 >
-<ListItemIcon>
-< Profiler />
-</ListItemIcon>
+
 <ListItemText primary="Stages" />
 {expandedStage ? <ExpandLess /> : <ExpandMore />}
 </ListItemButton>

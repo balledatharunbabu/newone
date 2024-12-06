@@ -55,10 +55,8 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 
 					}}
 				>
-					<ListItemIcon>
-						< Profiler />
-					</ListItemIcon>
-					<ListItemText primary="End Points" sx={{color:'#434779'}} />
+				
+					<ListItemText primary="End Points"  />
 					{inexpandedEndPoint ? <ExpandLess /> : <ExpandMore />}
 				</ListItemButton>
 				<Collapse in={inexpandedEndPoint} timeout="auto" unmountOnExit
