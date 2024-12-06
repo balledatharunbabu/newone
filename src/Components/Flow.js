@@ -8,6 +8,7 @@ import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from 
 import { DnDProvider, useDnD } from './DnDContext';
 import Folders from '../MenuBar/Folders'
 import Header from '../MenuBar/Header'
+import Folder from  '../MenuBar/Folders'
 import AmqConfig from '../AdapterConfigurations/amqConfig'
 import KafkaConfig from '../AdapterConfigurations/kafkaConfig';
 import IbmMqConfig from '../AdapterConfigurations/ibmMqConfig';
@@ -139,8 +140,10 @@ const DnDFlow = () => {
     <>
       <div className="dndflow" style={{ }}>
       <Header></Header>
+
         <div className="reactflow-wrapper" ref={reactFlowWrapper} 
-        style={{ height: '60vh', width: '82%',marginLeft:'18%' ,overflow:'hidden'}}>
+        style={{ height: '60vh', width: '82%',marginLeft:'18%' ,overflow:'hidden',display:'flex'}}>
+
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -156,9 +159,9 @@ const DnDFlow = () => {
             nodeTypes={nodeTypes}
 
             fitView
-            style={{ backgroundColor: 'white' }}
+            style={{ backgroundColor:'rgb(231, 231, 254  )'}}
           >
-            <Background />
+     
           </ReactFlow>
         </div>
       </div>

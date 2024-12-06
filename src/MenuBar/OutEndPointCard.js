@@ -25,16 +25,14 @@ export default function OutEndPointCard({ updateOutExpandedStage, outexpandedEnd
 
 	return (
 		<Card
-			sx={{
-				// // boxShadow: '8px 8px 1000px rgba(0, 0, 0, 0.5)',
-				boxShadow: '8px 8px 1px rgba(0, 0, 0, 0.3)', // Initial shadow
-				transition: 'all 0.3s ease', // Smooth transition for hover effect
-				'&:hover': {
-					backgroundColor: 'rgba(0, 0, 255, 0.2)', // Background color on hover
-					borderTopRightRadius: '50px',
-					minHeight: '40%', // Transition to oval shape on hover
-					// boxShadow: '0px -8px 20px rgba(0, 0, 0, 0.2)'
-				},
+		sx={{
+			// // boxShadow: '8px 8px 1000px rgba(0, 0, 0, 0.5)',
+			boxShadow: '8px 8px 1px rgba(0, 0, 0, 0.3)', // Initial shadow
+			transition: 'all 0.3s ease', // Smooth transition for hover effect
+			'&:hover': {
+			backgroundColor: 'rgba(0, 0, 255, 0.2)', // Background color on hover
+			borderTopRightRadius: '50px',// Transition to oval shape on hover
+			},
 			}}
 		>
 			<CardContent

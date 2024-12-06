@@ -32,9 +32,7 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 			transition: 'all 0.3s ease', // Smooth transition for hover effect
 			'&:hover': {
 			backgroundColor: 'rgba(0, 0, 255, 0.2)', // Background color on hover
-			borderTopRightRadius: '50px',
-			 // Transition to oval shape on hover
-			// boxShadow: '0px -8px 20px rgba(0, 0, 0, 0.2)'
+			borderTopRightRadius: '50px',// Transition to oval shape on hover
 			},
 			}}
 		>
@@ -60,7 +58,7 @@ export default function InEndPointCard({ updateInExpandedEndPoint, inexpandedEnd
 					<ListItemIcon>
 						< Profiler />
 					</ListItemIcon>
-					<ListItemText primary="End Points" />
+					<ListItemText primary="End Points" sx={{color:'#434779'}} />
 					{inexpandedEndPoint ? <ExpandLess /> : <ExpandMore />}
 				</ListItemButton>
 				<Collapse in={inexpandedEndPoint} timeout="auto" unmountOnExit

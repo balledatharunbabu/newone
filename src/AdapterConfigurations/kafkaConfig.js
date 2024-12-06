@@ -10,7 +10,7 @@ const KafkaConfig = () => {
 
   return (
     <div className="configBox">
-      <div className="header">Kafka Configuration</div>
+      <div className="header" style={{backgroundColor:'rgb(88, 90, 148  )'}}>Kafka Configuration</div>
       <form>
         <table>
           <tbody>
@@ -18,13 +18,10 @@ const KafkaConfig = () => {
               <td>Topic Name:</td>
               <td><input type="text" placeholder="Enter Topic Name" /></td>
             </tr>
-            <tr>
-              <td>Queue Name:</td>
-              <td><input type="text" placeholder="Enter Queue Name" /></td>
-            </tr>
+            
           </tbody>
         </table>
-        <div className="toggleButton" onClick={toggleProperties}>
+        <div className="toggleButton" onClick={toggleProperties} style={{backgroundColor:'rgb(88, 90, 148  )'}}>
           Properties
         </div>
         {showProperties && (
@@ -35,17 +32,10 @@ const KafkaConfig = () => {
                 <td>Broker URL:</td>
                 <td><input type="text" placeholder="Enter Broker URL" /></td>
               </tr>
-              <tr>
-                <td>Username:</td>
-                <td><input type="text" placeholder="Enter Username" /></td>
-              </tr>
-              <tr>
-                <td>Password:</td>
-                <td><input type="password" placeholder="Enter Password" /></td>
-              </tr>
+             
             </tbody>
           </table>
-          <center><button type="submit" className="submitButton">Submit</button></center>
+          <center><button type="submit" className="submitButton" style={{backgroundColor:'#434779'}}>Submit</button></center>
           </>
         )}
        

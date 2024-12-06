@@ -10,7 +10,7 @@ const IbmMqConfig = () => {
 
   return (
     <div className="configBox">
-      <div className="header">IbmMQ Configuration</div>
+      <div className="header" style={{backgroundColor:'rgb(88, 90, 148  )'}}>IbmMQ Configuration</div>
       <form>
         <table>
           <tbody>
@@ -24,7 +24,7 @@ const IbmMqConfig = () => {
             </tr>
           </tbody>
         </table>
-        <div className="toggleButton" onClick={toggleProperties}>
+        <div className="toggleButton" onClick={toggleProperties} style={{backgroundColor:'rgb(88, 90, 148  )'}}>
           Properties
         </div>
         {showProperties && (
@@ -49,7 +49,7 @@ const IbmMqConfig = () => {
               </tr>
             </tbody>
           </table>
-          <center><button type="submit" className="submitButton">Submit</button></center>
+          <center><button type="submit" className="submitButton" style={{backgroundColor:'#434779'}}>Submit</button></center>
           </>
         )}
         

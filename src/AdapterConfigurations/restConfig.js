@@ -10,7 +10,7 @@ const RestConfig = () => {
 
   return (
     <div className="configBox">
-      <div className="header">Rest Configuration</div>
+      <div className="header" style={{backgroundColor:'rgb(88, 90, 148  )'}}>Rest Configuration</div>
       <form>
         <table>
           <tbody>
@@ -20,9 +20,10 @@ const RestConfig = () => {
             </tr>
           </tbody>
         </table>
-        <div className="toggleButton" onClick={toggleProperties}>
+        <center><button type="submit" className="submitButton" style={{backgroundColor:'#434779'}}>Submit</button></center>
+        {/* <div className="toggleButton" onClick={toggleProperties}>
           Properties
-        </div>
+        </div> */}
         {showProperties && (
             <>
           <table>
@@ -41,12 +42,10 @@ const RestConfig = () => {
               </tr> */}
             </tbody>
           </table>
-          <center><button type="submit" className="submitButton">Submit</button></center>
+          
           </>
         )}
-        <div>
-          <button type="submit" className="submitButton">Submit</button>
-        </div>
+      
       </form>
     </div>
   );

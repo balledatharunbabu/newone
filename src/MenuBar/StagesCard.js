@@ -30,17 +30,14 @@ updateExpandedStage(!expandedStage);
 return (
 < Card
 sx={{
-// // boxShadow: '8px 8px 1000px rgba(0, 0, 0, 0.5)',
-boxShadow: '8px 8px 1px rgba(0, 0, 0, 0.3)', // Initial shadow
-transition: 'all 0.3s ease', // Smooth transition for hover effect
-'&:hover': {
-backgroundColor: 'rgba(0, 0, 255, 0.2)', // Background color on hover
-borderTopRightRadius: '50px',
-minHeight:'40%', // Transition to oval shape on hover
-// boxShadow: '0px -8px 20px rgba(0, 0, 0, 0.2)'
-},
-}
-}
+  // // boxShadow: '8px 8px 1000px rgba(0, 0, 0, 0.5)',
+  boxShadow: '8px 8px 1px rgba(0, 0, 0, 0.3)', // Initial shadow
+  transition: 'all 0.3s ease', // Smooth transition for hover effect
+  '&:hover': {
+  backgroundColor: 'rgba(0, 0, 255, 0.2)', // Background color on hover
+  borderTopRightRadius: '50px',// Transition to oval shape on hover
+  },
+  }}
 >
 <CardContent
 sx={{
@@ -70,7 +67,7 @@ sx={{ boxShadow: "initial" }}
 >
 <List component="div" disablePadding>
 <ListItemButton sx={{
-pl: 4,
+pl: 2,
 '&:hover': {
 backgroundColor: '#434779', // Background color on hover
 borderTopRightRadius: '24px', // Transition to oval shape on hover
@@ -80,12 +77,12 @@ color: "white"
 }} onDragStart={(event) => onDragStart(event, 'source')} draggable
 >
 <ListItemIcon>
-<PersonIcon />
+
 </ListItemIcon>
 <ListItemText primary="InGate" />
 </ListItemButton>
 <ListItemButton sx={{
-pl: 4,
+pl: 2,
 '&:hover': {
 backgroundColor: '#434779', // Background color on hover
 borderTopRightRadius: '24px', // Transition to oval shape on hover
@@ -94,12 +91,12 @@ color: "white"
 },
 }}  onDragStart={(event) => onDragStart(event, 'modify')} draggable>
 <ListItemIcon>
-<PersonIcon />
+
 </ListItemIcon>
 <ListItemText primary="Convert" />
 </ListItemButton>
 <ListItemButton sx={{
-pl: 4,
+pl: 2,
 '&:hover': {
 backgroundColor: '#434779', // Background color on hover
 borderTopRightRadius: '24px', // Transition to oval shape on hover
@@ -108,12 +105,12 @@ color: "white"
 },
 }}  onDragStart={(event) => onDragStart(event, 'selector')} draggable>
 <ListItemIcon>
-<PersonIcon />
+
 </ListItemIcon>
-<ListItemText primary="routerFilp" />
+<ListItemText primary="RouteFilp" />
 </ListItemButton>
 <ListItemButton sx={{
-pl: 4,
+pl: 2,
 '&:hover': {
 backgroundColor: '#434779', // Background color on hover
 borderTopRightRadius: '24px', // Transition to oval shape on hover
@@ -122,7 +119,7 @@ color: "white"
 },
 }} onDragStart={(event) => onDragStart(event, 'target')} draggable >
 <ListItemIcon>
-<PersonIcon />
+
 </ListItemIcon>
 <ListItemText primary="OutGate" />
 </ListItemButton>

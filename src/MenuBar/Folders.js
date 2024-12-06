@@ -40,7 +40,7 @@ onClose={toggleDrawer} // Close the drawer when clicking outside
 sx={{
     '& .MuiDrawer-paper': {
     borderRadius: '16px',
-    position: 'absolute',
+    position: '-webkit-sticky',
     top: '80px', // Adjust this value based on your AppBar height (default is 64px for AppBar in desktop view)
     paddingTop: '16px', // Padding inside the drawer
     paddingBottom: '72px',
@@ -53,9 +53,9 @@ sx={{
 >
     <Box sx={{msOverflowY:'auto'}}>
         <InEndPointCard updateInExpandedEndPoint={handleClickInEndPoints} inexpandedEndPoint={inexpandedEndPoint} />
-        <Divider sx={{ backgroundColor: 'black', height: 2 }} />
+        {/* <Divider sx={{ backgroundColor: 'black', height: 2 }} /> */}
         <StagesCard updateExpandedStage={handleClickStages} expandedStage={expandedStages} />
-        <Divider sx={{ backgroundColor: 'black', height: 2 }} />
+        {/* <Divider sx={{ backgroundColor: 'black', height: 2 }} /> */}
         <OutEndPointCard updateOutExpandedStage={handleClickOutEndPoints} outexpandedEndPoint={outexpandedEndPoint} />
     </Box>
 

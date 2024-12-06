@@ -28,8 +28,8 @@ export default function AppBarComponent() {
                     color="blue"
                     aria-label="open drawer"
                     sx={{ mr: 2 }}
-                    onClick={toggleDrawer}
-                ><MenuIcon />
+                   onClick={toggleDrawer}
+                ><MenuIcon style={{color:'white'}}/>
                 </IconButton>
                 <Box mr={50} />
                 
