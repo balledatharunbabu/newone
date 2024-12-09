@@ -4,12 +4,17 @@ import '../Style/Configuration/AdapterConfigStyle.css';
 const AmqConfig = () => {
   const [showProperties, setShowProperties] = useState(false);
 
+  const[amqconfig,AmqConfigprop]=useState({
+    
+  });
+
+
   const toggleProperties = () => {
     setShowProperties(!showProperties);
   };
 
   return (
-    <div className="configBox">
+    <div className="configBox" style={{overflowY: 'auto',overflowX: 'hidden', scrollbarWidth: 'thin', maxHeight: '30vh'}}>
       <div className="header" style={{backgroundColor:'rgb(88, 90, 148  )'}}>JMS Configuration</div>
       <form>
         <table>

@@ -13,6 +13,7 @@ import AmqConfig from '../AdapterConfigurations/amqConfig'
 import KafkaConfig from '../AdapterConfigurations/kafkaConfig';
 import IbmMqConfig from '../AdapterConfigurations/ibmMqConfig';
 import RestConfig from '../AdapterConfigurations/restConfig';
+import { useEffect } from 'react';
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
@@ -40,6 +41,15 @@ const DnDFlow = () => {
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
 
+
+
+
+
+
+
+  // if(nodes.length==0){
+  //   setDisplay(!display)
+  // }
 
   // const isValidConnection = (connection) => {
   //   console.log(connection.source); 
@@ -110,8 +120,9 @@ const DnDFlow = () => {
         if (node.type === 'Amq' ||node.type === 'Amqout') {
           return !prevAmq; // Toggle Amq state
         }
-        return false; // Reset to false if it's not 'Amq'
+   return false;
       });
+
       setKafka((prevKafka) => {
         if (node.type === 'kafka' ||node.type === 'kafkaout') {
           return !prevKafka;
@@ -142,7 +153,7 @@ const DnDFlow = () => {
       <Header></Header>
 
         <div className="reactflow-wrapper" ref={reactFlowWrapper} 
-        style={{ height: '60vh', width: '82%',marginLeft:'18%' ,overflow:'hidden',display:'flex'}}>
+        style={{ height: '70vh', width: '81.5%',marginLeft:'18.5%' ,overflow:'hidden',display:'flex'}}>
 
           <ReactFlow
             nodes={nodes}
@@ -165,6 +176,7 @@ const DnDFlow = () => {
           </ReactFlow>
         </div>
       </div>
+  
       <div>
       {Amq && ( <div><AmqConfig /></div>)}
       {Kafka && <div><KafkaConfig/></div>}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Toolbar, IconButton } from "@mui/material";
+import {AppBar, Toolbar, IconButton,Box } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Folders from "./Folders.js";
@@ -20,7 +20,7 @@ export default function AppBarComponent() {
 
     return (
 
-        <Box sx={{ flexGrow: 1, height: '10vh', backgroundColor: '#434779' }}>
+        <AppBar sx={{ flexGrow: 1, height: '10vh', backgroundColor: '#434779', zIndex: 200000}}>
             <Toolbar display="flex" alignItems="center" >
                 <IconButton
                     size="large"
@@ -55,7 +55,7 @@ export default function AppBarComponent() {
                     fontSize="20"
                     noWrap
                     // component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
+                    sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
                     onClick={() => handleEvent}
                 >
                         CREATE
@@ -84,10 +84,10 @@ export default function AppBarComponent() {
                     fontSize="20"
                     noWrap
                     // component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
+                    sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
                     onClick={() => handleEvent}
                 >
-                        VIEW
+                        Save Scenario
                     </Typography>
                 </IconButton>
             </Toolbar>
@@ -98,7 +98,7 @@ export default function AppBarComponent() {
                 sx={{
                     Padding: "10%"
                 }} />
-        </Box>
+        </AppBar>
     )
 
 }

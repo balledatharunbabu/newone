@@ -5,7 +5,7 @@ import InEndPointCard from './InEndPointCard';
 import OutEndPointCard from './OutEndPointCard';
 
 
-
+import '../Style/Configuration/AdapterConfigStyle.css'
 export default function Folders({ drawerOpen, toggleDrawer }) {
 
 // State to track open/close status
@@ -51,7 +51,7 @@ sx={{
     },
     }}
 >
-    <Box sx={{msOverflowY:'auto'}}>
+    <Box  className="custom-scrollbar" sx={{ scrollbarWidth:'thin',overflowY:'auto'}} >
         <InEndPointCard updateInExpandedEndPoint={handleClickInEndPoints} inexpandedEndPoint={inexpandedEndPoint} />
         {/* <Divider sx={{ backgroundColor: 'black', height: 2 }} /> */}
         <StagesCard updateExpandedStage={handleClickStages} expandedStage={expandedStages} />
