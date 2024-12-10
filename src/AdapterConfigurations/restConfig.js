@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import '../Style/Configuration/AdapterConfigStyle.css';
-
+import Adaptercontext from '../Context/Adaptercontext';
 const RestConfig = () => {
   const [showProperties, setShowProperties] = useState(false);
-
+  const[restconfig,setrestprop]=useState({
+    url:""
+  })
   const toggleProperties = () => {
     setShowProperties(!showProperties);
   };
+
+  const handelchange=(event)=>{
+      const{name,value}=event.target
+    setrestprop(
+      {
+        ...restconfig,
+        [name]: value
+      }
+    )
+  }
+  const{setrestAdapterprop}=useContext(Adaptercontext)
+  function onSubmitHandler(e){
+    e.preventDefault()
+    setrestAdapterprop(restconfig)
+  }
+
+ 
 
   return (
     <div className="configBox">
@@ -16,11 +35,11 @@ const RestConfig = () => {
           <tbody>
             <tr>
               <td>URL:</td>
-              <td><input type="text" placeholder="Enter URL" /></td>
+              <td><input type="text" placeholder="Enter URL" name='url' value={restconfig.url} onChange={handelchange}/></td>
             </tr>
           </tbody>
         </table>
-        <center><button type="submit" className="submitButton" style={{backgroundColor:'#434779'}}>Submit</button></center>
+        <center><button onClick={onSubmitHandler} className="submitButton" style={{backgroundColor:'#434779'}}>Submit</button></center>
         {/* <div className="toggleButton" onClick={toggleProperties}>
           Properties
         </div> */}

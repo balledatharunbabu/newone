@@ -28,8 +28,8 @@ export  function  KafkaOutAdapter() {
   return (
     <div style={{ padding: '1px', border: '1px solid black', borderRadius: '20%',height:'30px',width:'35px' }}>
       <img src="/kafka.png" style={{height:'30px',marginLeft:'3px'}}></img>
-      <Handle type='target' position={Position.Left}  style={{  background: 'green' }} ></Handle>
-      <Handle type='source' position={Position.Right}  style={{  background: 'green' }}></Handle>
+      <Handle type='target' position={Position.Left}  style={{  background: '#434779' }} ></Handle>
+      <Handle type='source' position={Position.Right}  style={{  background: '#434779' }}></Handle>
     </div>
   );
 }

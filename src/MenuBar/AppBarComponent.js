@@ -1,14 +1,44 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import {AppBar, Toolbar, IconButton,Box } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Folders from "./Folders.js";
-
+import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
 
-    const handleEvent = (event) => {
+    const {amqadapter,restadapter,ibmadapter,kafkaadapter}=useContext(Adaptercontext)
 
+    // console.log(flownodes)
+    // console.log(flowedges)
+
+//     const handleEvent = () => {
+// console.log(amqadapter)
+// console.log(ibmadapter)
+// console.log(kafkaadapter)
+// console.log(restadapter)
+
+//     }
+
+const saveStratergy = async () => {
+    // const stageNodes = flownodes.filter((flownodes) =>
+    //     ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
+    //     );
+        
+    //     // Create a dot-separated string of node labels
+    //     const stagesArray = stageNodes.map((flownodes) => flownodes.data.label).join('.');
+    //     console.log(stagesArray)
+    try {
+        let response = await fetch("", {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amqadapter, restadapter, ibmadapter, kafkaadapter}),
+        });
+        const res = await response.json();
+        console.log("Scenario Creation is success", res);
+    } catch (error) {
+        console.log("Error posting Scenario Creation", error.message);
     }
+};
 
     // State to manage Drawer open/close
     const [drawerOpen, setDrawerOpen] = useState(true);
@@ -56,7 +86,7 @@ export default function AppBarComponent() {
                     noWrap
                     // component="div"
                     sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
-                    onClick={() => handleEvent}
+                   
                 >
                         CREATE
                     </Typography>
@@ -79,15 +109,15 @@ export default function AppBarComponent() {
                             borderRadius: '50%', // Transition to oval shape on hover
                             boxShadow: '5px 8px 100px rgba(0, 0, 0, 0.45)', // Enhanced shadow on hover
                         },
-                    }}
+                    }}  onClick={saveStratergy}
                 ><Typography
                     fontSize="20"
                     noWrap
                     // component="div"
                     sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
-                    onClick={() => handleEvent}
+                   
                 >
-                        Save Scenario
+                        Save 
                     </Typography>
                 </IconButton>
             </Toolbar>

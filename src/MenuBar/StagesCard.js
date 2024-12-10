@@ -18,7 +18,7 @@ export default function StagesCard({ updateExpandedStage, expandedStage }) {
      const onDragStart = (event, nodeType) => {
        setType(nodeType);
    
-       // console.log(nodeType)
+        console.log(nodeType)
        event.dataTransfer.effectAllowed = 'move';
      };
    
@@ -72,7 +72,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}} onDragStart={(event) => onDragStart(event, 'source')} draggable
+}} onDragStart={(event) => onDragStart(event, 'Ingate')} draggable
 >
 <ListItemIcon>
 
@@ -87,7 +87,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}  onDragStart={(event) => onDragStart(event, 'modify')} draggable>
+}}  onDragStart={(event) => onDragStart(event, 'Convert')} draggable>
 <ListItemIcon>
 
 </ListItemIcon>
@@ -101,7 +101,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}}  onDragStart={(event) => onDragStart(event, 'selector')} draggable>
+}}  onDragStart={(event) => onDragStart(event, 'RouteFlip')} draggable>
 <ListItemIcon>
 
 </ListItemIcon>
@@ -115,7 +115,7 @@ borderTopRightRadius: '24px', // Transition to oval shape on hover
 boxShadow: '8px 8px 100px rgba(0, 0, 0, 0.1)', // Enhanced shadow on hover
 color: "white"
 },
-}} onDragStart={(event) => onDragStart(event, 'target')} draggable >
+}} onDragStart={(event) => onDragStart(event, 'Outgate')} draggable >
 <ListItemIcon>
 
 </ListItemIcon>

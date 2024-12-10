@@ -6,7 +6,7 @@ export  function AmqAdapter() {
     <div style={{ padding: '1px', border: '1px solid #454545', borderRadius: '20%',height:'30px',width:'35px' }}>
       <img src="/amq.png" style={{height:'30px'}}></img>
       {/* <Handle type='source' position={Position.Top}></Handle> */}
-      <Handle type='source' position={Position.Right}   style={{  background: 'green' }}></Handle>
+      <Handle type='source' position={Position.Right}   style={{  background: '#434779' }}></Handle>
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, useContext } from 'react';
 import { ReactFlow, ReactFlowProvider, addEdge, useNodesState, useEdgesState, useReactFlow, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
-import Menu from './Menu';
+
 import { RestAdapter, IBMMQAdapter, KafkaAdapter, AmqAdapter } from '../CustomNodes/Adapters';
 import { Modify, Selector, Target, Source } from '../CustomNodes/Stages';
 import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from '../CustomNodes/OutBoundAdapters';
@@ -14,15 +14,18 @@ import KafkaConfig from '../AdapterConfigurations/kafkaConfig';
 import IbmMqConfig from '../AdapterConfigurations/ibmMqConfig';
 import RestConfig from '../AdapterConfigurations/restConfig';
 import { useEffect } from 'react';
+import AdapterContextProvider from '../Context/AdpaterContextProvider'
+import Adaptercontext from '../Context/Adaptercontext';
+
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
   ibmMQ: IBMMQAdapter,
   Amq: AmqAdapter,
-  modify: Modify,
-  selector: Selector,
-  source: Source,
-  target: Target,
+  Convert: Modify,
+  RouteFlip: Selector,
+  Ingate: Source,
+  Outgate: Target,
   restout: RestOutAdapter,
   kafkaout: KafkaOutAdapter,
   ibmMQout: IBMMQOutAdapter,
@@ -42,8 +45,12 @@ const DnDFlow = () => {
   const [type] = useDnD();
 
 
+      // const{setflownodes}=useContext(Adaptercontext)
+      // const{setflowedges}=useContext(Adaptercontext)
 
 
+      // setflownodes(nodes)
+      // setflowedges(edges)
 
 
 
@@ -100,7 +107,7 @@ const DnDFlow = () => {
         id: getId(),
         type,
         position,
-        data: { label: `Node of type: ${type}` },
+        data: { label: `Node of type: ${type}`  },
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -170,7 +177,7 @@ const DnDFlow = () => {
             nodeTypes={nodeTypes}
 
             fitView
-            style={{ backgroundColor:'rgb(231, 231, 254  )'}}
+            style={{ backgroundColor:'white'}}
           >
      
           </ReactFlow>
@@ -190,7 +197,9 @@ const DnDFlow = () => {
 export default () => (
   <ReactFlowProvider>
     <DnDProvider>
-      <DnDFlow />
+      <AdapterContextProvider>
+        <DnDFlow />
+      </AdapterContextProvider>
     </DnDProvider>
   </ReactFlowProvider>
 );

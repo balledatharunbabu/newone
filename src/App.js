@@ -1,9 +1,7 @@
 import logo from './logo.svg';
 
 import Flow from './Components/Flow'
-import Headerbar from './Components/Header'
-import Header from './MenuBar/Header'
-import Menu  from './Components/Menu';
+
 function App() {
   return (
     <div >
