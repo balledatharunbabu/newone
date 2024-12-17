@@ -2,7 +2,7 @@ import React, { useState,useContext } from 'react';
 import '../Style/Configuration/AdapterConfigStyle.css';
 import AppBarComponent  from '../MenuBar/AppBarComponent';
 import Adaptercontext from '../Context/Adaptercontext';
-const IbmMqConfig = () => {
+const IbmMqConfigout = () => {
   const [showProperties, setShowProperties] = useState(false);
 // const[Amqconfig,setamqconfig]=useState(amqconfig)
   const[ibmconfig,setibmconfigprop]=useState({
@@ -14,7 +14,7 @@ const IbmMqConfig = () => {
     password:""
   })
 
-  const{setibmAdapterprop}=useContext(Adaptercontext)
+  const{setibmAdapterpropout}=useContext(Adaptercontext)
   const handleChange=(event)=>{
     const{name,value}=event.target;
 
@@ -31,7 +31,7 @@ const IbmMqConfig = () => {
 e.preventDefault()
   setarray(true)
 
-  setibmAdapterprop(ibmconfig)
+  setibmAdapterpropout(ibmconfig)
 }
   return (
     <>
@@ -46,7 +46,7 @@ e.preventDefault()
             </tr>
             <tr>
               <td>Queue Name:</td>
-              <td><input type="text" placeholder="Enter Queue Name" name='queuename' value={ibmconfig.queuename} onChange={handleChange} /></td>
+              <td><input type="text" placeholder="Enter Queue Name" name='queuename' value={ibmconfig.queuemanger} onChange={handleChange} /></td>
             </tr>
           </tbody>
         </table>
@@ -59,19 +59,19 @@ e.preventDefault()
             <tbody>
               <tr>
                 <td>Channel</td>
-                <td><input type="text" placeholder="Enter Channel"  name='channel' value={ibmconfig.channel} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Enter Channel"  name='channel' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Connection Name</td>
-                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.queuename} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Username:</td>
-                <td><input type="text" placeholder="Enter Username" name='username' value={ibmconfig.username} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Enter Username" name='username' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Password:</td>
-                <td><input type="password" placeholder="Enter Password" name='password' value={ibmconfig.password} onChange={handleChange}/></td>
+                <td><input type="password" placeholder="Enter Password" name='password' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
               </tr>
             </tbody>
           </table>
@@ -90,4 +90,4 @@ e.preventDefault()
   );
 };
 
-export default IbmMqConfig;
+export default IbmMqConfigout;

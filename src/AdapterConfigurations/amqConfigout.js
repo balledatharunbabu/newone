@@ -6,7 +6,7 @@ import IbmMqConfig from './ibmMqConfig'
 import Adaptercontext from '../Context/Adaptercontext';
 
 
-const AmqConfig = () => {
+const AmqConfigout = () => {
   const [showProperties, setShowProperties] = useState(false);
 
   const[amqconfig,setAmqConfigprop]=useState({
@@ -18,7 +18,7 @@ const AmqConfig = () => {
 
   });
 
-  const{setamqAdapterprop}=useContext(Adaptercontext)
+  const{setamqAdapterpropout}=useContext(Adaptercontext)
 
   // const{setflownodes}=useContext(Adaptercontext)
 
@@ -49,7 +49,7 @@ const AmqConfig = () => {
   const [array, setarray] = useState(false);
 function onSubmitHandler(e){
 e.preventDefault()
-setamqAdapterprop(amqconfig)
+setamqAdapterpropout(amqconfig)
   setarray(true)
 
 
@@ -113,4 +113,5 @@ setamqAdapterprop(amqconfig)
   
 };
 
-export default AmqConfig;
+export default AmqConfigout;
+

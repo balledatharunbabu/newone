@@ -10,13 +10,18 @@ import Folders from '../MenuBar/Folders'
 import Header from '../MenuBar/Header'
 import Folder from  '../MenuBar/Folders'
 import AmqConfig from '../AdapterConfigurations/amqConfig'
+import AmqConfigout from '../AdapterConfigurations/amqConfigout'
 import KafkaConfig from '../AdapterConfigurations/kafkaConfig';
+import KafkaConfigout from '../AdapterConfigurations/kafkaConfigout';
 import IbmMqConfig from '../AdapterConfigurations/ibmMqConfig';
+import IbmMqConfigout from '../AdapterConfigurations/ibmMqConfigout';
 import RestConfig from '../AdapterConfigurations/restConfig';
+import RestConfigout from '../AdapterConfigurations/restConfigout';
 import { useEffect } from 'react';
 import AdapterContextProvider from '../Context/AdpaterContextProvider'
 import Adaptercontext from '../Context/Adaptercontext';
 
+import IngateConfig from '../StagesConfig/Ingate'
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
@@ -45,12 +50,12 @@ const DnDFlow = () => {
   const [type] = useDnD();
 
 
-      // const{setflownodes}=useContext(Adaptercontext)
-      // const{setflowedges}=useContext(Adaptercontext)
+      const{setflownodes}=useContext(Adaptercontext)
+      const{setflowedges}=useContext(Adaptercontext)
 
 
-      // setflownodes(nodes)
-      // setflowedges(edges)
+      setflownodes(nodes)
+      setflowedges(edges)
 
 
 
@@ -76,9 +81,15 @@ const DnDFlow = () => {
   const[selectedEdgeType,setSelectedEdgeType]=useState('');
   const [selectedNodeType, setSelectedNodeType] = useState('');
   const [Amq, setAmq] = useState(false);
+  const [Amqout, setAmqout] = useState(false);
   const [Kafka, setKafka] = useState(false);
+  const [Kafkaout, setKafkaout] = useState(false);
   const [Rest, setRest] = useState(false);
+  const [Restout, setRestout] = useState(false);
   const [Ibm, setIbm] = useState(false);
+  const [Ibmout, setIbmout] = useState(false);
+
+  const [Ingate, setIngate] = useState(false);
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge({ ...params, type: 'straight' }, eds)),
@@ -107,7 +118,7 @@ const DnDFlow = () => {
         id: getId(),
         type,
         position,
-        data: { label: `Node of type: ${type}`  },
+        data: { label: type  },
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -124,31 +135,63 @@ const DnDFlow = () => {
       setSelectedNodeType(node.type);
 
       setAmq((prevAmq) => {
-        if (node.type === 'Amq' ||node.type === 'Amqout') {
+        if (node.type === 'Amq') {
+          return !prevAmq; // Toggle Amq state
+        }
+   return false;
+      });
+      setAmqout((prevAmq) => {
+        if (node.type === 'Amqout') {
           return !prevAmq; // Toggle Amq state
         }
    return false;
       });
 
+
       setKafka((prevKafka) => {
-        if (node.type === 'kafka' ||node.type === 'kafkaout') {
+        if (node.type === 'kafka' ) {
+          return !prevKafka;
+        }
+        return false;
+      });
+      setKafkaout((prevKafka) => {
+        if (node.type === 'kafkaout') {
           return !prevKafka;
         }
         return false;
       });
   
       setRest((prevRest) => {
-        if (node.type === 'rest' ||node.type === 'restout') {
+        if (node.type === 'rest') {
+          return !prevRest; 
+        }
+        return false; 
+      });
+
+      setRestout((prevRest) => {
+        if (node.type === 'restout') {
           return !prevRest; 
         }
         return false; 
       });
   
       setIbm((prevIbm) => {
-        if (node.type === 'ibmMQ' ||node.type === 'ibmMQout') {
+        if (node.type === 'ibmMQ' ) {
           return !prevIbm; 
         }
         return false; 
+      });
+      setIbmout((prevAmq) => {
+        if (node.type === 'ibmMQout') {
+          return !prevAmq; // Toggle Amq state
+        }
+   return false;
+      });
+      setIngate((prevAmq) => {
+        if (node.type === 'Ingate') {
+          return !prevAmq; // Toggle Amq state
+        }
+   return false;
       });
     },
     [],
@@ -186,20 +229,35 @@ const DnDFlow = () => {
   
       <div>
       {Amq && ( <div><AmqConfig /></div>)}
+      {Amqout && ( <div><AmqConfigout /></div>)}
       {Kafka && <div><KafkaConfig/></div>}
+      {Kafkaout && <div><KafkaConfigout/></div>}
+
       {Ibm && ( <div><IbmMqConfig /></div>)}
+      {Ibmout && ( <div><IbmMqConfigout /></div>)}
+
       {Rest && <div><RestConfig/></div>}
+      {Restout && <div><RestConfigout/></div>}
+
+      {Ingate && <div><IngateConfig></IngateConfig></div>}
       </div>
     </>
   );
 };
 
 export default () => (
-  <ReactFlowProvider>
-    <DnDProvider>
-      <AdapterContextProvider>
-        <DnDFlow />
-      </AdapterContextProvider>
-    </DnDProvider>
-  </ReactFlowProvider>
+  // <ReactFlowProvider>
+  //   <DnDProvider>
+  //     <AdapterContextProvider>
+  //       <DnDFlow />
+  //     </AdapterContextProvider>
+  //   </DnDProvider>
+  // </ReactFlowProvider>
+    <ReactFlowProvider>
+   <DnDProvider>
+     <AdapterContextProvider>
+       <DnDFlow />
+     </AdapterContextProvider>
+   </DnDProvider>
+ </ReactFlowProvider>
 );

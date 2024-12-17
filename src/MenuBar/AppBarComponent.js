@@ -6,38 +6,66 @@ import Folders from "./Folders.js";
 import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
 
-    const {amqadapter,restadapter,ibmadapter,kafkaadapter}=useContext(Adaptercontext)
+    const {amqadapter,restadapter,ibmadapter,kafkaadapter,flownodes,flowedges,amqadapterout,restadapterout,ibmadapterout,kafkaadapterout}=useContext(Adaptercontext)
 
-    // console.log(flownodes)
-    // console.log(flowedges)
-
-//     const handleEvent = () => {
-// console.log(amqadapter)
-// console.log(ibmadapter)
-// console.log(kafkaadapter)
-// console.log(restadapter)
-
-//     }
+   
 
 const saveStratergy = async () => {
-    // const stageNodes = flownodes.filter((flownodes) =>
-    //     ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
-    //     );
+
+    console.log(JSON.stringify(kafkaadapterout))
+  const stageNodes = flownodes.filter((flownodes) =>
+    ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
+    );
+    console.log(stageNodes)
+    
+  const INNodes = flownodes.filter((flownodes) =>
+    ['Amq', 'ibmMQ', 'rest', 'kafka'].includes(flownodes.type)
+
+    );
+    console.log(INNodes)
+
+
+    const OutNodes = flownodes.filter((flownodes) =>
+        ['restout', 'kafkaout', 'ibmMQout', 'Amqout'].includes(flownodes.type)
+        );
+        console.log(OutNodes)
         
-    //     // Create a dot-separated string of node labels
-    //     const stagesArray = stageNodes.map((flownodes) => flownodes.data.label).join('.');
-    //     console.log(stagesArray)
-    try {
-        let response = await fetch("", {
+        // Create a dot-separated string of node labels
+        const stagesArray = stageNodes.map((flownodes) => flownodes.data.label).join('.');
+   
+        const Inbound = INNodes.find((node) => node.type === 'Amq') ? amqadapter 
+                        :INNodes.find((node) => node.type === 'ibmMQ')?ibmadapter
+                        :INNodes.find((node) => node.type === 'kafka')?kafkaadapter
+                        :INNodes.find((node) => node.type === 'rest')?restadapter:null;
+        
+      
+        const Outbound = OutNodes.find((node) => node.type === 'Amqout') ? amqadapterout 
+                        : OutNodes.find((node) => node.type === 'ibmMQout')?ibmadapterout
+                        : OutNodes.find((node) => node.type === 'kafkaout')?kafkaadapterout
+                        : OutNodes.find((node) => node.type === 'restout')?restadapterout:null;
+      
+ console.log(Inbound)
+    const flowData = {
+        stages: stagesArray,
+        Inbound,
+        Outbound,
+        flownodes,
+        flowedges
+
+        };
+        console.log(JSON.stringify(flowData))
+        let response = await fetch("http://172.17.1.72:9090/stream", {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amqadapter, restadapter, ibmadapter, kafkaadapter}),
+            // body: JSON.stringify( {amqadapter,kafkaadapter}),
+            body:JSON.stringify(flowData)
+
         });
-        const res = await response.json();
-        console.log("Scenario Creation is success", res);
-    } catch (error) {
-        console.log("Error posting Scenario Creation", error.message);
-    }
+
+        // const res = await response.json();
+        // console.log(res)
+        // console.log("Scenario Creation is success", res);
+   
 };
 
     // State to manage Drawer open/close

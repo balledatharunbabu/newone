@@ -1,6 +1,6 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
-
+import  '../Style/Configuration/Configuration.css'
 export function Modify(){
   return (
     <>
