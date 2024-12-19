@@ -1,7 +1,7 @@
 import React, { useState ,useContext} from "react";
-import {AppBar, Toolbar, IconButton,Box } from "@mui/material";
+import { Toolbar, IconButton} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Folders from "./Folders.js";
 import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
@@ -12,7 +12,7 @@ export default function AppBarComponent() {
 
 const saveStratergy = async () => {
 
-    console.log(JSON.stringify(kafkaadapterout))
+    // console.log(JSON.stringify(kafkaadapterout))
   const stageNodes = flownodes.filter((flownodes) =>
     ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
     );
@@ -62,9 +62,9 @@ const saveStratergy = async () => {
 
         });
 
-        // const res = await response.json();
-        // console.log(res)
-        // console.log("Scenario Creation is success", res);
+        const res = await response.json();
+        console.log(res)
+        console.log("Flow Creation is success", res);
    
 };
 
@@ -78,85 +78,54 @@ const saveStratergy = async () => {
 
     return (
 
-        <AppBar sx={{ flexGrow: 1, height: '10vh', backgroundColor: '#434779', zIndex: 200000}}>
-            <Toolbar display="flex" alignItems="center" >
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="blue"
-                    aria-label="open drawer"
-                    sx={{ mr: 2 }}
-                   onClick={toggleDrawer}
-                ><MenuIcon style={{color:'white'}}/>
-                </IconButton>
-                <Box mr={50} />
-                
-                <IconButton
-                    size="small"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    borderRadius="1%" // Start with oval shape
-                    sx={{
-                        mr: 1,
-                        boxShadow: '8px 4px 6px rgba(0, 0, 0, 0.2)', // Initial shadow
-                        transition: 'all 1.5s ease', // Smooth transition for shape and shadow
-                        backgroundColor: 'white', // Light background color
-                        borderRadius: '8px', // Start with rectangle shape
-                        '&:hover': {
-                            backgroundColor: 'white', // Background color on hover
-                            borderRadius: '50%', // Transition to oval shape on hover
-                            boxShadow: '5px 8px 100px rgba(0, 0, 0, 0.45)', // Enhanced shadow on hover
-                        },
-                    }}
-                ><Typography
-                    fontSize="20"
-                    noWrap
-                    // component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
-                   
-                >
-                        CREATE
-                    </Typography>
-                </IconButton>
-                <Box mr={50} />
-                <IconButton
-                    size="small"
-                    edge="start"
-                    color="inherit"
-                    aria-label="open drawer"
-                    borderRadius="1%" // Start with oval shape
-                    sx={{
-                        mr: 1,
-                        boxShadow: '8px 4px 6px rgba(0, 0, 0, 0.2)', // Initial shadow
-                        transition: 'all 1.5s ease', // Smooth transition for shape and shadow
-                        backgroundColor: 'white', // Light background color
-                        borderRadius: '8px', // Start with rectangle shape
-                        '&:hover': {
-                            backgroundColor: 'white', // Background color on hover
-                            borderRadius: '50%', // Transition to oval shape on hover
-                            boxShadow: '5px 8px 100px rgba(0, 0, 0, 0.45)', // Enhanced shadow on hover
-                        },
-                    }}  onClick={saveStratergy}
-                ><Typography
-                    fontSize="20"
-                    noWrap
-                    // component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' ,color:'black'} }}
-                   
-                >
-                        Save 
-                    </Typography>
-                </IconButton>
-            </Toolbar>
+        <>
+        <nav class="navbar navbar-expand-lg fixed-top" id="headerTwoDiv">
+            <div class="container-fluid d-flex justify-content-center align-items-center" id="alignItems">
+                <Toolbar>
+                    <IconButton
+                        size="small"
+                        edge="start"
+                        color="blue"
+                        aria-label="open drawer"
+                        onClick={toggleDrawer}
+                    ><MenuIcon style={{ color: 'white' }} />
+                    </IconButton>
+                </Toolbar>
+                <Folders
+                    drawerOpen={drawerOpen}
+                    toggleDrawer={toggleDrawer}
+                />
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+                    <li class="nav-item me-5" onClick={saveStratergy}>
+                            <a class="nav-link active" aria-current="page">
+                                <i class="bi bi-save"></i> Save
+                            </a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link active" aria-current="page" href="/viewDetails">
+                                <i class="bi bi-eye"></i> View
+                            </a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link active" href="/auditFilter">
+                                <i class="bi bi-file-text"></i> Audits</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link active" href="/exceptionFilter">
+                                <i class="bi bi-exclamation-circle"></i> Exceptions</a>
+                        </li>
+                        <li class="nav-item me-5">
+                            <a class="nav-link active" href="/replayDetails">
+                                <i class="bi bi-arrow-repeat"></i> Replay</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-            <Folders
-                drawerOpen={drawerOpen}
-                toggleDrawer={toggleDrawer}
-                sx={{
-                    Padding: "10%"
-                }} />
-        </AppBar>
+    </>
+
     )
 
 }
