@@ -115,7 +115,7 @@ const ExceptionDetails = () => {
          />
          </ReactFlowProvider>
          </div>
-                <p>Exception Info</p>
+                {/* <p>Exception Info</p> */}
                 <table>
                     <tbody>
                         <tr>
