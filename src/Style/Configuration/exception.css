@@ -1,11 +1,8 @@
 .mainGrid{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     justify-content: space-between;
     padding: 5%;
-    gap: 50px;
   }
   .inputField_container{
     
@@ -74,9 +71,9 @@
     font-size: 14px;
   }
   .displayExcepDet{
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
+    /* box-shadow: 0px 3px 5px rgba(0, 0, 0, 1); */
     position: relative;
-    margin-top: 50px;
+    margin-top: 10px;
     width: 43rem;
   }
   .displayExcepDet p{
@@ -120,15 +117,14 @@
   .ErrorDisplay,.payloadDisplay{
     border: 1px solid black;
     height: auto;
-    width: 500px;
+    width: auto;
     margin: 5px;
     padding: 10px;
   }
   
   .exceptionFlow {
-    width: 43rem;
-    height: 300px; /* Adjust as needed */
-    border: 1px solid black;
+    width: auto;
+    height: 150px; 
 }
 
 /* style={{ width: "43rem",height:'auto'}} */

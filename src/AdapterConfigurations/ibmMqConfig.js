@@ -63,7 +63,7 @@ e.preventDefault()
               </tr>
               <tr>
                 <td>Connection Name</td>
-                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.queuename} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.connectionName} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Username:</td>

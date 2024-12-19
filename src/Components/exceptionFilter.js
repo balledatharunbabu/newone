@@ -56,6 +56,7 @@ const ExceptionFilter = () => {
   };
 
   return (
+    <center>
     <div className="Transaction">
       <HeaderTwo></HeaderTwo>
       <div className="SearchDiv">
@@ -113,6 +114,7 @@ const ExceptionFilter = () => {
         )}
       </div>
     </div>
+    </center>
   );
 };
 

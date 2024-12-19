@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import HeaderTwo from './headerTwo'
-
+import '../Style/Configuration/audits.css'
 const Filter = () => {
   const [flowId, setScenarioId] = useState('');
   const [flowName, setScenarioName] = useState('');
@@ -58,6 +58,7 @@ const Filter = () => {
   
 
   return (
+    <center>
     <div className="Transaction">
       <HeaderTwo></HeaderTwo>
       <div className="SearchDiv">
@@ -99,10 +100,10 @@ const Filter = () => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#012169',
+            backgroundColor: '#434779',
             height: '2rem',
             width: '10rem',
-            marginTop: '2rem',
+            marginTop: '1rem',
           }}
           onClick={handleViewAudits}
         >
@@ -116,6 +117,7 @@ const Filter = () => {
         )}
       </div>
     </div>
+    </center>
   );
 };
 

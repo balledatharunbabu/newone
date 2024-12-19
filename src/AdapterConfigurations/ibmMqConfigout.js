@@ -46,7 +46,7 @@ e.preventDefault()
             </tr>
             <tr>
               <td>Queue Name:</td>
-              <td><input type="text" placeholder="Enter Queue Name" name='queuename' value={ibmconfig.queuemanger} onChange={handleChange} /></td>
+              <td><input type="text" placeholder="Enter Queue Name" name='queuename' value={ibmconfig.queuename} onChange={handleChange} /></td>
             </tr>
           </tbody>
         </table>
@@ -59,19 +59,19 @@ e.preventDefault()
             <tbody>
               <tr>
                 <td>Channel</td>
-                <td><input type="text" placeholder="Enter Channel"  name='channel' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Enter Channel"  name='channel' value={ibmconfig.channel} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Connection Name</td>
-                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Connection Name" name='connectionName' value={ibmconfig.connectionName} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Username:</td>
-                <td><input type="text" placeholder="Enter Username" name='username' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
+                <td><input type="text" placeholder="Enter Username" name='username' value={ibmconfig.username} onChange={handleChange}/></td>
               </tr>
               <tr>
                 <td>Password:</td>
-                <td><input type="password" placeholder="Enter Password" name='password' value={ibmconfig.queuemanger} onChange={handleChange}/></td>
+                <td><input type="password" placeholder="Enter Password" name='password' value={ibmconfig.password} onChange={handleChange}/></td>
               </tr>
             </tbody>
           </table>
@@ -81,11 +81,6 @@ e.preventDefault()
         
       </form>
     </div>
-    {/* {array&&
-    
-    (<AppBarComponent ibmconfig={ibmconfig} amqconfig={Amqconfig}></AppBarComponent>)
-
-} */}
     </>
   );
 };
