@@ -5,13 +5,13 @@ import Flow from './Components/Flow'
 // import Header from './MenuBar/Header'
 // import Menu from './Components/Menu';
 import ExceptionDetails from './Components/exception'
-import ViewFilter from './Components/viewFilter'
-import View from './Components/viewDetails'
+// import ViewFilter from './Components/viewFilter'
 import Auditres from './Components/audits'
 import Filter from './Components/auditFilter'
 import ExceptionFilter from './Components/exceptionFilter'
 import ViewReplay from './Components/replay'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import View from './Components/View/ViewFlow/View';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Flow />} />
-          <Route path="/viewFilter" element={<ViewFilter></ViewFilter>}></Route>
+          {/* <Route path="/viewFilter" element={<ViewFilter></ViewFilter>}></Route> */}
           <Route path="/viewDetails" element={<View></View>}></Route>
           <Route path="/auditFilter" element={<Filter></Filter>}></Route>
           <Route path="/auditDetails" element={<Auditres></Auditres>}></Route>

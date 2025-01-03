@@ -77,4 +77,16 @@
     font-size: 14px;
   }
   
- 
+  .input-field {
+    width: 400px;
+    margin-top: 2rem;
+  }
+  
+  .input-field .MuiOutlinedInput-root {
+    border-color: #434779; /* Default border color */
+  }
+  
+  .input-field .MuiInputLabel-root {
+    color: #434779; /* Default label color */
+  }
+  

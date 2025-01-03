@@ -1,7 +1,6 @@
 import React, { useState ,useContext} from "react";
 import { Toolbar, IconButton} from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-// import Typography from '@mui/material/Typography';
 import Folders from "./Folders.js";
 import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
@@ -65,6 +64,7 @@ const saveStratergy = async () => {
         const res = await response.json();
         console.log(res)
         console.log("Flow Creation is success", res);
+        // window.location.reload();
    
 };
 
@@ -104,16 +104,16 @@ const saveStratergy = async () => {
                         </li>
                         <li class="nav-item me-5">
                             <a class="nav-link active" aria-current="page" href="/viewDetails">
-                                <i class="bi bi-eye"></i> View
+                                <i class="bi bi-eye"></i> Display
                             </a>
                         </li>
                         <li class="nav-item me-5">
                             <a class="nav-link active" href="/auditFilter">
-                                <i class="bi bi-file-text"></i> Audits</a>
+                                <i class="bi bi-file-text"></i> Logs</a>
                         </li>
                         <li class="nav-item me-5">
                             <a class="nav-link active" href="/exceptionFilter">
-                                <i class="bi bi-exclamation-circle"></i> Exceptions</a>
+                                <i class="bi bi-exclamation-circle"></i> Faults</a>
                         </li>
                         <li class="nav-item me-5">
                             <a class="nav-link active" href="/replayDetails">
