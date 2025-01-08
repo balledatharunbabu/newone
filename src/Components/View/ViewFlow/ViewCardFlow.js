@@ -8,7 +8,9 @@ import ViewDnDFlow from './ViewDnDFlow';
 export default function ViewCardFlow({ item, index, expandedViewFlowIndex }) {
 
 	const isFlowExpanded = expandedViewFlowIndex === index;
-
+{
+	console.log("item 003-> ", item);
+}
 	return (
 		<Card
 			sx={{
@@ -24,7 +26,8 @@ export default function ViewCardFlow({ item, index, expandedViewFlowIndex }) {
 				borderTopRightRadius: 60,
 				borderBottomLeftRadius: 24,
 				borderBottomRightRadius: 24,
-				backgroundColor: 'rgba(0, 0, 255, 0.1)',
+				// backgroundColor: 'rgba(0, 0, 255, 0.1)',
+				// backgroundColor: '#4A5A6A',
 				transition: 'transform 0.2s',
 				display: 'flex',
 				justifyContent: 'center',

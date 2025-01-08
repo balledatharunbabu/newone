@@ -97,7 +97,7 @@ const ExceptionFilter = () => {
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#012169',
+            backgroundColor: '#434779',
             height: '2rem',
             width: '10rem',
             marginTop: '2rem',

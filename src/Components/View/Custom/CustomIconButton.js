@@ -18,6 +18,7 @@ export default function CustomIconButton({ onClick, label, icon, sx }) {
 				...sx,
 			}}
 			onClick={onClick}
+			type="submit"
 		>
 			<ListItemText primary={label} sx={{ textAlign: 'center' }} />
 			{icon}

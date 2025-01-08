@@ -5,13 +5,12 @@ import Folders from "./Folders.js";
 import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
 
-    const {amqadapter,restadapter,ibmadapter,kafkaadapter,flownodes,flowedges,amqadapterout,restadapterout,ibmadapterout,kafkaadapterout}=useContext(Adaptercontext)
+    const {amqadapter,restadapter,ibmadapter,kafkaadapter,flownodes,flowedges,amqadapterout,restadapterout,ibmadapterout,kafkaadapterout,transdata}=useContext(Adaptercontext)
 
-   
 
 const saveStratergy = async () => {
 
-    // console.log(JSON.stringify(kafkaadapterout))
+    console.log(JSON.stringify(kafkaadapterout))
   const stageNodes = flownodes.filter((flownodes) =>
     ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
     );
@@ -42,6 +41,8 @@ const saveStratergy = async () => {
                         : OutNodes.find((node) => node.type === 'ibmMQout')?ibmadapterout
                         : OutNodes.find((node) => node.type === 'kafkaout')?kafkaadapterout
                         : OutNodes.find((node) => node.type === 'restout')?restadapterout:null;
+
+        const Transdata=transdata
       
  console.log(Inbound)
     const flowData = {
@@ -49,7 +50,8 @@ const saveStratergy = async () => {
         Inbound,
         Outbound,
         flownodes,
-        flowedges
+        flowedges,
+        Transdata
 
         };
         console.log(JSON.stringify(flowData))
@@ -61,10 +63,9 @@ const saveStratergy = async () => {
 
         });
 
-        const res = await response.json();
-        console.log(res)
-        console.log("Flow Creation is success", res);
-        // window.location.reload();
+        // const res = await response.json();
+        // console.log(res)
+        // console.log("Scenario Creation is success", res);
    
 };
 

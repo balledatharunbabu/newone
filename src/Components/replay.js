@@ -5,7 +5,7 @@ import HeaderTwo from '../Components/headerTwo'
 const ViewReplay = () => {
     const [details, setDetails] = useState([]);
     const showReplays= () => {
-        const scenarioDetailsUrl = `http://172.17.1.72:9090/getAllReplays`;
+        const scenarioDetailsUrl = `http://172.17.2.77:9090/getAllReplays`;
         
         axios.get(scenarioDetailsUrl)
             .then(response => {
@@ -18,10 +18,11 @@ const ViewReplay = () => {
 
     const handleReplay = (flowId, exceptionRoute) => {
         console.log(flowId,exceptionRoute)
-        const replayUrl = `http://172.17.1.72:9090/getReplay?flowId=${flowId}&exceptionRoute=${exceptionRoute}`;
+        const replayUrl = `http://172.17.2.77:9090/getReplay?flowId=${flowId}&exceptionRoute=${exceptionRoute}`;
         axios.get(replayUrl)
             .then(response => {
                 console.log(response.data);
+                showReplays();
             })
             .catch(error => console.error('Error fetching data:', error));
     };
@@ -34,7 +35,7 @@ const ViewReplay = () => {
         <div className='Replays'>
             {details.map((item, index) => (
                     <div key={index} className='eachBox'>
-                        <p>Flow: {item.flowId}.{item.flowName}.{item.region}</p>
+                        <p><span style={{fontSize:'bold'}}>Flow:</span> {item.flowId}.{item.flowName}.{item.region}</p>
                         <p>Exception: {item.exceptionRoute}</p>
                         <button className='replayBtn' 
                          onClick={() => handleReplay(item.flowId, item.exceptionRoute)}>Replay</button>

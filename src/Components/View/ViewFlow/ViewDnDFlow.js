@@ -29,7 +29,9 @@ import AnimatedSVGEdge from '../Custom/AnimatedSVGEdge.js';
 // import AnimatedSVGEdge from './components/AnimatedSVGEdge';
 export default function ViewDnDFlow({ item }) {
 
-
+{
+	console.log("item out 004", item);
+}
 
 	const reactFlowWrapper = useRef(null);
 	const [selectedEdgeType, setSelectedEdgeType] = useState('');
@@ -40,6 +42,7 @@ export default function ViewDnDFlow({ item }) {
 	const [Kafka, setKafka] = useState(false);
 	const [Rest, setRest] = useState(false);
 	const [Ibm, setIbm] = useState(false);
+
 	// outGate
 	const [Amqout, setAmqout] = useState(false);
 	const [Kafkaout, setKafkaout] = useState(false);
@@ -66,6 +69,13 @@ export default function ViewDnDFlow({ item }) {
 		Amqout: AmqOutAdapter,
 	};
 
+
+	const [clickedIndex, setClickedIndex] = useState(null); // State to track clicked index
+
+    const handleClick = (index) => {
+        setClickedIndex(index); // Update state with the clicked index
+    };
+
 	// const onDragOver = useCallback((event) => {
 	// 	event.preventDefault();
 	// 	event.dataTransfer.dropEffect = 'move';
@@ -73,6 +83,7 @@ export default function ViewDnDFlow({ item }) {
 
 	const onNodeClick = useCallback(
 		(_, node) => {
+			
 			// Update the selected node type when a node is clicked
 			setSelectedNodeType(node.type);
 
@@ -82,7 +93,9 @@ export default function ViewDnDFlow({ item }) {
 				}
 				return false;
 			});
+
 			setAmqout((prevAmq) => {
+				console.log("node index ", _)
 				if (node.type === 'Amqout') {
 					return !prevAmq; // Toggle Amq state
 				}
@@ -181,6 +194,7 @@ export default function ViewDnDFlow({ item }) {
 					nodeTypes={nodeTypes}
 					edgeTypes={edgeTypes}
 					onNodeClick={onNodeClick}
+
 					// onDragOver={onDragOver}
 					fitView
 					style={{ backgroundColor: 'rgb(255, 255, 255)' }}
@@ -215,8 +229,26 @@ export default function ViewDnDFlow({ item }) {
 				{Ibm && (<ViewInGateIbmMqConfig imbIngate={item.inbound} />)}
 				{Rest && <ViewInGateRestConfig restInGate={item.inbound} />}
 
+
+				
+				 {/* {
+				list((outbound, index) => (
+					 	Amqout && (<ViewOutGateAmqConfig key={index} outgate={outbound} />)
+                	))
+				} */}
+
+				{item.outbound.map((outboundArray, outerIndex) => (
+					outboundArray.map((outbound, innerIndex) => (
+						<ViewOutGateAmqConfig
+							key={`${outerIndex}-${innerIndex}`}
+							index={`${outerIndex}-${innerIndex}`}
+							outgate={outbound}
+						/>
+					))
+				))}		
+				
 				{/* outGate */}
-				{Amqout && (<ViewOutGateAmqConfig outgate={item.outbound} />)}
+				{/* {Amqout && (<ViewOutGateAmqConfig outgate={item.outbound} />)} */}
 				{Kafkaout && <ViewOutGateKafkaConfig kafkaOutGate={item.outbound} />}
 				{Ibmout && (<ViewOutGateIbmMqConfig imbOutGate={item.inbound} />)}
 				{Restout && <ViewOutGateRestConfig restOutGate={item.inbound} />}
