@@ -22,6 +22,12 @@ import AdapterContextProvider from '../Context/AdpaterContextProvider'
 import Adaptercontext from '../Context/Adaptercontext';
 
 import IngateConfig from '../StagesConfig/Ingate'
+
+import Convert from '../StagesConfig/Convert'
+import ConvertData from '../StagesConfig/Convert';
+
+import OutgateData from '../StagesConfig/Outgate'
+
 const nodeTypes = {
   kafka: KafkaAdapter,
   rest: RestAdapter,
@@ -90,6 +96,10 @@ const DnDFlow = () => {
   const [Ibmout, setIbmout] = useState(false);
 
   const [Ingate, setIngate] = useState(false);
+
+  const[Convert,setCovert]=useState(false)
+
+  const[Outgate,setOutgate]=useState(false)
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge({ ...params, type: 'straight' }, eds)),
@@ -193,6 +203,19 @@ const DnDFlow = () => {
         }
    return false;
       });
+
+      setCovert((prevAmq) => {
+        if (node.type === 'Convert') {
+          return !prevAmq; // Toggle Amq state
+        }
+   return false;
+      });
+      setOutgate((prevAmq) => {
+        if (node.type === 'Outgate') {
+          return !prevAmq; // Toggle Amq state
+        }
+   return false;
+      });
     },
     [],
   );
@@ -240,6 +263,10 @@ const DnDFlow = () => {
       {Restout && <div><RestConfigout/></div>}
 
       {Ingate && <div><IngateConfig></IngateConfig></div>}
+
+      {Convert && <div><ConvertData></ConvertData ></div>}
+
+      {Outgate && <div><OutgateData></OutgateData></div>}
       </div>
     </>
   );

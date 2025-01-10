@@ -15,6 +15,8 @@ const KafkaConfigout = () => {
 
   const{setkafkaAdapterpropout}=useContext(Adaptercontext)
 
+  const {setKafkaFinalOutboundForm,KafkaFinalOutboundForm}=useContext(Adaptercontext)
+
   const handelchange=(event)=>{
 const{name,value}=event.target
 setKafkaprop ({
@@ -26,7 +28,13 @@ setKafkaprop ({
 
   function onSubmitHandler(e){
     e.preventDefault()
-    setkafkaAdapterpropout(kafkaconfig)
+    setKafkaFinalOutboundForm([...KafkaFinalOutboundForm, kafkaconfig]);
+
+
+    setKafkaprop({
+   topic:"",
+    brokerurl:""
+  });
   }
   return (
     <div className="configBox">

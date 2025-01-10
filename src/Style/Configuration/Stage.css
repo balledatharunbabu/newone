@@ -52,27 +52,27 @@ select {
     border-radius: 8px; /* Rounded corners */
     background-color: #f9f9f9; /* Light background */
     color: #333; /* Text color */
-    cursor: pointer;
+    /* cursor: pointer; */
     outline: none; /* Remove default focus outline */
     appearance: none; /* Remove default arrow for custom styling */
     -webkit-appearance: none; /* Safari support */
-    z-index: 100px;
+    /* z-index: 100px; */
   }
   
   /* Add a custom arrow icon */
-  .select-wrapper {
+  /* .select-wrapper {
     position: relative;
     display: inline-block;
-    width: 150px; /* Same width as select */
-  }
+    width: 150px; 
+  } */
   
   /* Custom Arrow icon to be positioned on the right */
-  select::after {
-    content: '▼'; /* Custom arrow icon */
+  /* select::after {
+    content: '▼';
     position: absolute;
     right: 10px;
     pointer-events: none;
-  }
+  } */
   
   /* Style for the dropdown options */
   option {

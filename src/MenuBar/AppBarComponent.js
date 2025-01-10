@@ -6,13 +6,14 @@ import Folders from "./Folders.js";
 import Adaptercontext from "../Context/Adaptercontext.js";
 export default function AppBarComponent() {
 
-    const {amqadapter,restadapter,ibmadapter,kafkaadapter,flownodes,flowedges,amqadapterout,restadapterout,ibmadapterout,kafkaadapterout}=useContext(Adaptercontext)
+    const {amqadapter,restadapter,ibmadapter,kafkaadapter,flownodes,flowedges,transdata,AmqFinalOutboundForm,
+        IBMFinalOutboundForm,KafkaFinalOutboundForm,RestFinalOutboundForm
+    }=useContext(Adaptercontext)
 
    
 
 const saveStratergy = async () => {
 
-    console.log(JSON.stringify(kafkaadapterout))
   const stageNodes = flownodes.filter((flownodes) =>
     ['Convert', 'Outgate', 'Ingate', 'RouteFlip'].includes(flownodes.type)
     );
@@ -31,26 +32,59 @@ const saveStratergy = async () => {
         console.log(OutNodes)
         
         // Create a dot-separated string of node labels
+        
+        const Stages=['Ingate','Convert','RouteFlip','Outgate']
+
         const stagesArray = stageNodes.map((flownodes) => flownodes.data.label).join('.');
-   
+
+       const checkStage= stagesArray.split(".")
+
+        const array=Stages.filter(stage => checkStage.includes(stage))
+
+        const filterarray=array.map((stages)=>stages).join('.');
+
+   console.log(filterarray)
+
+
         const Inbound = INNodes.find((node) => node.type === 'Amq') ? amqadapter 
                         :INNodes.find((node) => node.type === 'ibmMQ')?ibmadapter
                         :INNodes.find((node) => node.type === 'kafka')?kafkaadapter
                         :INNodes.find((node) => node.type === 'rest')?restadapter:null;
-        
+    const Outbound=[]
       
-        const Outbound = OutNodes.find((node) => node.type === 'Amqout') ? amqadapterout 
-                        : OutNodes.find((node) => node.type === 'ibmMQout')?ibmadapterout
-                        : OutNodes.find((node) => node.type === 'kafkaout')?kafkaadapterout
-                        : OutNodes.find((node) => node.type === 'restout')?restadapterout:null;
+        // const Outbound = OutNodes.find((node) => node.type === 'Amqout') ? amqadapterout 
+        //                 : OutNodes.find((node) => node.type === 'ibmMQout')?ibmadapterout
+        //                 : OutNodes.find((node) => node.type === 'kafkaout')?kafkaadapterout
+        //                 : OutNodes.find((node) => node.type === 'restout')?restadapterout:null;
+
+    
+
+
+        if(OutNodes.find((node)=>node.type==='Amqout')){
+            Outbound.push(AmqFinalOutboundForm)
+        }
+        if(OutNodes.find((node)=>node.type==='ibmMQout')){
+            Outbound.push(IBMFinalOutboundForm)
+        }
+        if(OutNodes.find((node)=>node.type==='kafkaout')){
+            Outbound.push(KafkaFinalOutboundForm)
+        }
+        if(OutNodes.find((node)=>node.type==='restout')){
+            Outbound.push(RestFinalOutboundForm)
+        }
+
+        const Transdata=transdata
       
- console.log(Inbound)
+ console.log(Outbound)
+
+
     const flowData = {
-        stages: stagesArray,
+        stages: filterarray,
         Inbound,
         Outbound,
         flownodes,
-        flowedges
+        flowedges,
+        Transdata
 
         };
         console.log(JSON.stringify(flowData))

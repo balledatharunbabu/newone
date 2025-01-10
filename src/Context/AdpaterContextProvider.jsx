@@ -13,6 +13,17 @@ import Adaptercontext from './Adaptercontext'
     const[restadapterout,setrestAdapterpropout]=useState(null);
     const[flownodes,setflownodes]=useState(null);
     const[flowedges,setflowedges]=useState(null);
+    const[transdata,setTransData]=useState(null);
+
+    const [AmqFinalOutboundForm,setAmqFinalOutboundForm]=useState([])
+
+    const [IBMFinalOutboundForm,setIBMFinalOutboundForm]=useState([])
+
+    const [KafkaFinalOutboundForm,setKafkaFinalOutboundForm]=useState([])
+
+    const [RestFinalOutboundForm,setRestFinalOutboundForm]=useState([])
+
+
 
     return(
         <Adaptercontext.Provider value={{amqadapter,setamqAdapterprop,ibmadapter,setibmAdapterprop,restadapter,setrestAdapterprop,kafkaadapter,setkafkaAdapterprop,
@@ -20,7 +31,10 @@ import Adaptercontext from './Adaptercontext'
             amqadapterout,setamqAdapterpropout,
             ibmadapterout,setibmAdapterpropout,
             kafkaadapterout,setkafkaAdapterpropout,
-            restadapterout,setrestAdapterpropout
+            restadapterout,setrestAdapterpropout,transdata,setTransData,AmqFinalOutboundForm,setAmqFinalOutboundForm,
+            IBMFinalOutboundForm,setIBMFinalOutboundForm,
+            KafkaFinalOutboundForm,setKafkaFinalOutboundForm,
+            RestFinalOutboundForm,setRestFinalOutboundForm
 
         }}>
                 {children}

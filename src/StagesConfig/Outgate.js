@@ -2,7 +2,7 @@
 import '../Style/Configuration/AdapterConfigStyle.css';
 import * as React from 'react';
 
-function Ingate(){
+function Outgate(){
 
     return(
         <>
@@ -29,7 +29,7 @@ function Ingate(){
             </tr>
           </tbody>
         </table>
-        {/* <center><button  onClick={onSubmitHandler} className="submitButton" style={{backgroundColor:'#434779'}} >Save</button></center> */}
+      
         
       </form>
       </div>
@@ -37,4 +37,4 @@ function Ingate(){
     )
 }
 
-export default Ingate
+export default Outgate

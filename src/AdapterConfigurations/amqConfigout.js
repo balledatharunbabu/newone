@@ -20,6 +20,8 @@ const AmqConfigout = () => {
 
   const{setamqAdapterpropout}=useContext(Adaptercontext)
 
+  const {setAmqFinalOutboundForm,AmqFinalOutboundForm}=useContext(Adaptercontext)
+
   // const{setflownodes}=useContext(Adaptercontext)
 
   // const INNodes = flownodes.filter((flownodes) =>
@@ -49,7 +51,18 @@ const AmqConfigout = () => {
   const [array, setarray] = useState(false);
 function onSubmitHandler(e){
 e.preventDefault()
-setamqAdapterpropout(amqconfig)
+
+
+setAmqFinalOutboundForm([...AmqFinalOutboundForm, amqconfig]);
+
+
+setAmqConfigprop({
+  topic: "",
+  queue: "",
+  brokerurl: "",
+  username: "",
+  password: "",
+});
   setarray(true)
 
 

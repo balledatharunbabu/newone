@@ -15,6 +15,9 @@ const IbmMqConfigout = () => {
   })
 
   const{setibmAdapterpropout}=useContext(Adaptercontext)
+
+  const {setIBMFinalOutboundForm,IBMFinalOutboundForm}=useContext(Adaptercontext)
+
   const handleChange=(event)=>{
     const{name,value}=event.target;
 
@@ -31,7 +34,18 @@ const IbmMqConfigout = () => {
 e.preventDefault()
   setarray(true)
 
-  setibmAdapterpropout(ibmconfig)
+  setIBMFinalOutboundForm([...IBMFinalOutboundForm, ibmconfig]);
+
+
+  setibmconfigprop({
+    queuemanger:"",
+    queuename:"",
+    channel:"",
+    connectionName:"",
+    username:"",
+    password:""
+  });
+    setarray(true)
 }
   return (
     <>

@@ -20,9 +20,17 @@ const RestConfigout = () => {
     )
   }
   const{setrestAdapterpropout}=useContext(Adaptercontext)
+  const {setRestFinalOutboundForm,RestFinalOutboundForm}=useContext(Adaptercontext)
+
   function onSubmitHandler(e){
     e.preventDefault()
-    setrestAdapterpropout(restconfig)
+    setRestFinalOutboundForm([...RestFinalOutboundForm, restconfig]);
+
+    
+    setrestprop({
+    url:""
+  });
+   
   }
 
  
