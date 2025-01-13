@@ -1,0 +1,83 @@
+
+
+.Ingate{
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 10px; 
+    padding: 30px;
+    margin-left:18% ;
+    text-align: left; 
+    width:77%; 
+    font-family: 'Arial', sans-serif; 
+    overflow: hidden;
+
+    
+}
+.Ingate table {
+    width: 100%; 
+  }
+  
+  .Ingate td {
+    padding: 5px 2px; 
+  }
+  
+
+ 
+  .Ingate div {
+ 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+  }
+  .submitButton{
+    background-color: #333; 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  /* Style for the select dropdown */
+select {
+    width: 150px; /* Adjust the width as needed */
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #8f86b8; /* Green border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    color: #333; /* Text color */
+    cursor: pointer;
+    outline: none; /* Remove default focus outline */
+    appearance: none; /* Remove default arrow for custom styling */
+    -webkit-appearance: none; /* Safari support */
+    z-index: 100px;
+  }
+  
+  /* Add a custom arrow icon */
+  .select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 150px; /* Same width as select */
+  }
+  
+  /* Custom Arrow icon to be positioned on the right */
+  select::after {
+    content: '▼'; /* Custom arrow icon */
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+  }
+  
+  /* Style for the dropdown options */
+  option {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #ffffff; /* White background */
+    color: #333; /* Text color */
+  }

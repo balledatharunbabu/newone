@@ -1,0 +1,55 @@
+
+.configBox {
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 12px rgba(10, 10, 10, 0.15);
+    border-radius: 10px; 
+    padding: 30px;
+    margin-left:18% ;
+    text-align: left; 
+    width:77%; 
+    font-family: 'Arial', sans-serif; 
+    overflow: hidden;
+    
+  }
+  .configBox table {
+    width: 100%; 
+  }
+  
+  .configBox td {
+    padding: 5px 2px; 
+  }
+  
+  .configBox td input {
+    width: 95%; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+ 
+  .configBox div {
+ 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+  }
+  
+  /* .configBox div:hover {
+    background-color: #555; 
+  } */
+  .submitButton{
+    background-color: #333; 
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
