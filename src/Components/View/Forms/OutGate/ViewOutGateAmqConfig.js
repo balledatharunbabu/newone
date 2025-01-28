@@ -10,18 +10,17 @@ import {
 	TextField
 } from '@mui/material';
 
-const ViewOutGateAmqConfig = ({ index, outgate, isActive}) => {
+const ViewOutGateAmqConfig = ({ outgate }) => {
 	const [showProperties, setShowProperties] = useState(false);
-	const [outgateDetails, setoutgateDetails] = useState([]);
 
 	{
-		console.log("outgate item rupa", index );
+		console.log("outgate --> ", outgate);
 	}
-	// setoutgateDetails(outgate);
+
 	const amqConfigOut = {
 		topicName: `${outgate.topic}`,
 		queueName: `${outgate.queue}`,
-		brokerUrl: outgate[0].brokerurl,
+		brokerUrl: outgate.brokerurl,
 		username: outgate.username
 		// password: ingate.password
 	};

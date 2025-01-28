@@ -35,7 +35,9 @@ const AmqConfigout = () => {
   const toggleProperties = () => {
     setShowProperties(!showProperties);
   };
+
   const [array, setarray] = useState(false);
+  
   function onSubmitHandler(e) {
     e.preventDefault()
 
@@ -60,7 +62,7 @@ const AmqConfigout = () => {
 
       <div className="configBox" style={{ overflowY: 'auto', overflowX: 'hidden', scrollbarWidth: 'thin', maxHeight: '30vh' }}>
         <div className="header" style={{ backgroundColor: 'rgb(88, 90, 148  )' }}>JMS Configuration</div>
-        <form >
+        <form id='amqOutForm' >
           <table>
             <tbody>
               <tr>

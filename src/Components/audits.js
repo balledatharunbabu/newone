@@ -15,7 +15,7 @@ const { flowId, flowName, region } = location.state || {};
     const fetchData = async () => {
       try {
         if (flowId && flowName && region) {
-          const getScenarioDetailsUrl = `http://localhost:9090/audits?flowId=${flowId}&flowName=${flowName}&region=${region}`;
+          const getScenarioDetailsUrl = `http://172.17.2.77:9090/audits?flowId=${flowId}&flowName=${flowName}&region=${region}`;
           const response = await axios.get(getScenarioDetailsUrl);
           setResponseDataList(response.data);
           console.log(response);

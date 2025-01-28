@@ -10,6 +10,9 @@ import { Modify, Selector, Target, Source } from '../CustomNodes/Stages';
 import { RestOutAdapter, KafkaOutAdapter, IBMMQOutAdapter, AmqOutAdapter } from '../CustomNodes/OutBoundAdapters';
 import ReactFlow, { ReactFlowProvider } from "reactflow";
 import 'reactflow/dist/style.css';
+import { Flex } from '@chakra-ui/react';
+import { alignProperty } from '@mui/material/styles/cssUtils';
+import { AlignHorizontalCenter } from '@mui/icons-material';
 
 const ExceptionDetails = () => {
 
@@ -63,7 +66,7 @@ const ExceptionDetails = () => {
     // Fetch Exception Details
     const getExceptionDetails = (flowId, flowName, region) => {
 
-        const scenarioDetailsUrl = `http://localhost:9090/exception?flowId=${flowId}&flowName=${flowName}&region=${region}`;
+        const scenarioDetailsUrl = `http://172.17.2.77:9090/exception?flowId=${flowId}&flowName=${flowName}&region=${region}`;
         axios.get(scenarioDetailsUrl)
             .then((response) => {
                 setDetails(response.data);
@@ -88,7 +91,9 @@ const ExceptionDetails = () => {
             })
             .catch((error) => console.error('Error fetching data:', error));
     };
-    console.log(flow)
+
+
+    console.log("flow", flow)
     const excepStack = () => setShowExcepStack(!showExcepStack);
     const displayPayload = () => setPayload(!payload);
 
@@ -98,6 +103,7 @@ const ExceptionDetails = () => {
 
 console.log(details)
     useEffect(() => {
+
         if (flow.nodes.length > 0 && flow.edges.length > 0 && details?.exceptionRoute) {
             // Find the node that matches the exception route (case-insensitive)
             const failedNode = flow.nodes.find(
@@ -140,6 +146,7 @@ console.log(details)
 
     return (
         <>
+        
             <div className="mainGrid">
                 <HeaderTwo></HeaderTwo>
                 <div className="displayExcepDet">

@@ -13,6 +13,9 @@ import {
 const ViewOutGateIbmMqConfig = ({ imbOutGate }) => {
 	const [showProperties, setShowProperties] = useState(false);
 
+	{
+		console.log("imbOutGate --> ", imbOutGate)
+	}
 	const ibmMQOutConfig = {
 		queueManager: `${imbOutGate.queuemanger}`,
 		queueName: `${imbOutGate.queuename}`,

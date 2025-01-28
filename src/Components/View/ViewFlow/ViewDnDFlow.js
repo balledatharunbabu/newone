@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState, useContext } from 'react';
+import React, { useRef, useCallback, useState, useContext, useEffect } from 'react';
 import { ReactFlow, ReactFlowProvider, addEdge, useNodesState, useEdgesState, useReactFlow, Background } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { ViewInRestAdapter, ViewInIBMMQAdapter, ViewInKafkaAdapter, ViewInAmqAdapter } from '../ViewAdapters/InGateAdapter.js';
@@ -18,24 +18,20 @@ import ViewOutGateRestConfig from '../Forms/OutGate/ViewOutGateRestConfig.js';
 
 import ViewStageConvert from '../Forms/Stages/ViewStageConvert.js';
 import ViewRouteFlip from '../Forms/Stages/ViewRouteFlip.js';
+import ViewGate from '../Forms/Stages/ViewGate.js';
 
-
-// import KafkaConfig from 'C:/Users/sboddapalli/Documents/newone/src/AdapterConfigurations/kafkaConfig.js';
-// import IbmMqConfig from 'C:/Users/sboddapalli/Documents/newone/src/AdapterConfigurations/ibmMqConfig.js';
-// import RestConfig from 'C:/Users/sboddapalli/Documents/newone/src/AdapterConfigurations/restConfig.js';
 import { Box } from '@mui/material';
 import { Modify, Selector, Target, Source } from './ViewStages.js';
 import AnimatedSVGEdge from '../Custom/AnimatedSVGEdge.js';
 // import AnimatedSVGEdge from './components/AnimatedSVGEdge';
-export default function ViewDnDFlow({ item }) {
 
-{
-	console.log("item out 004", item);
-}
+export default function ViewDnDFlow({ item, listOfMaps, expandedViewFlowIndex }) {
+
+	{
+		// console.log(listOfMaps, " item out 004", item);
+	}
 
 	const reactFlowWrapper = useRef(null);
-	const [selectedEdgeType, setSelectedEdgeType] = useState('');
-	const [selectedNodeType, setSelectedNodeType] = useState('');
 
 	// ingate
 	const [Amq, setAmq] = useState(false);
@@ -50,8 +46,13 @@ export default function ViewDnDFlow({ item }) {
 	const [Ibmout, setIbmout] = useState(false);
 
 	// stages
+	const [Ingate, setInGate] = useState(false);
 	const [RouteFlip, setRouteFlip] = useState(false);
 	const [Convert, setConvert] = useState(false);
+	const [Outgate, setOutGate] = useState(false);
+
+	const [currentOutBound, setCurrentOutBound] = useState(null);
+
 
 	const nodeTypes = {
 
@@ -60,7 +61,7 @@ export default function ViewDnDFlow({ item }) {
 		ibmMQ: ViewInIBMMQAdapter,
 		Amq: ViewInAmqAdapter,
 		Convert: Modify,
-		RouteFlip: Selector, 
+		RouteFlip: Selector,
 		Ingate: Source,
 		Outgate: Target,
 		restout: RestOutAdapter,
@@ -70,37 +71,55 @@ export default function ViewDnDFlow({ item }) {
 	};
 
 
-	const [clickedIndex, setClickedIndex] = useState(null); // State to track clicked index
 
-    const handleClick = (index) => {
-        setClickedIndex(index); // Update state with the clicked index
-    };
 
-	// const onDragOver = useCallback((event) => {
-	// 	event.preventDefault();
-	// 	event.dataTransfer.dropEffect = 'move';
-	// }, []);
+	// let listOfMaps = [];
+
+	{
+		// console.log("item  dnd ", item)
+	}
+
+
+
+
 
 	const onNodeClick = useCallback(
 		(_, node) => {
-			
-			// Update the selected node type when a node is clicked
-			setSelectedNodeType(node.type);
+
+			console.log("node type ", node.type)
+
+			//   Extract the part after the underscore and update the current node
+			const currentNodeIndex = node.id.split("_")[1];
+			console.log(item.outbound.length, "outbound Length<--- currentNodeIndex ", currentNodeIndex)
+			console.log("index ---> ", (Number(currentNodeIndex) - (item.nodes.length) - 1))
+			if ((Number(currentNodeIndex) - (item.nodes.length) - 1) < 0) {
+				console.log("*************************************", node.type)
+				console.log((item.nodes.length), " current Index ", Number(currentNodeIndex));
+				console.log("length of Maps : ", listOfMaps.length)
+				console.log(" current node index : ", Number(currentNodeIndex))
+				console.log(" Maps : ", listOfMaps)
+				setCurrentOutBound(listOfMaps[listOfMaps.length - (item.nodes.length - Number(currentNodeIndex))]);
+
+			}
+
+
 
 			setAmq((prevAmq) => {
 				if (node.type === 'Amq') {
+
 					return !prevAmq; // Toggle Amq state
 				}
 				return false;
 			});
 
-			setAmqout((prevAmq) => {
-				console.log("node index ", _)
+			setAmqout((prevAmqout) => {
 				if (node.type === 'Amqout') {
-					return !prevAmq; // Toggle Amq state
+
+					return !prevAmqout; // Toggle Amq state
 				}
 				return false;
 			});
+
 
 
 			setKafka((prevKafka) => {
@@ -142,21 +161,28 @@ export default function ViewDnDFlow({ item }) {
 				}
 				return false;
 			});
-			// setIngate((prevAmq) => {
-			// 	if (node.type === 'Ingate') {
-			// 		return !prevAmq; // Toggle Amq state
-			// 	}
-			// 	return false;
-			// });
+			setInGate((prevAmq) => {
+				if (node.type === 'Ingate') {
+					return !prevAmq; // Toggle Amq state
+				}
+				return false;
+			});
 			setConvert((prevConvert) => {
 				if (node.type === 'Convert') {
 					return !prevConvert;
 				}
 				return false;
 			});
+
 			setRouteFlip((prevRouteFlip) => {
 				if (node.type === 'RouteFlip') {
 					return !prevRouteFlip;
+				}
+				return false;
+			});
+			setOutGate((prevAmq) => {
+				if (node.type === 'Outgate') {
+					return !prevAmq; // Toggle Amq state
 				}
 				return false;
 			});
@@ -164,11 +190,12 @@ export default function ViewDnDFlow({ item }) {
 		[],
 	);
 
+
+
+
 	const edgeTypes = {
-		// straight: <AnimatedSVGEdge itemEdge={item.edges} />
 		straight: (props) =>
 			<AnimatedSVGEdge {...props} itemEdges={item.edges} />,
-		// <AnimatedSVGEdge {...props} edges={item.edges} nodes={item.nodes} type={item.type} />
 	};
 
 	return (
@@ -194,7 +221,6 @@ export default function ViewDnDFlow({ item }) {
 					nodeTypes={nodeTypes}
 					edgeTypes={edgeTypes}
 					onNodeClick={onNodeClick}
-
 					// onDragOver={onDragOver}
 					fitView
 					style={{ backgroundColor: 'rgb(255, 255, 255)' }}
@@ -208,7 +234,6 @@ export default function ViewDnDFlow({ item }) {
 				display: 'flex',
 				flexDirection: 'column',
 
-				// marginTop: 1,	
 				paddingRight: 2.5,
 				// border: '1px solid #ddd',
 				// borderRadius: 2,
@@ -229,33 +254,29 @@ export default function ViewDnDFlow({ item }) {
 				{Ibm && (<ViewInGateIbmMqConfig imbIngate={item.inbound} />)}
 				{Rest && <ViewInGateRestConfig restInGate={item.inbound} />}
 
+				{
+					Amqout
+					&&
+					<ViewOutGateAmqConfig
+						outgate={currentOutBound}
+					/>
+				}
 
-				
-				 {/* {
-				list((outbound, index) => (
-					 	Amqout && (<ViewOutGateAmqConfig key={index} outgate={outbound} />)
-                	))
-				} */}
-
-				{item.outbound.map((outboundArray, outerIndex) => (
-					outboundArray.map((outbound, innerIndex) => (
-						<ViewOutGateAmqConfig
-							key={`${outerIndex}-${innerIndex}`}
-							index={`${outerIndex}-${innerIndex}`}
-							outgate={outbound}
-						/>
-					))
-				))}		
-				
-				{/* outGate */}
+				{
+					console.log(item.transdata," kafak out :", item)
+				}
 				{/* {Amqout && (<ViewOutGateAmqConfig outgate={item.outbound} />)} */}
-				{Kafkaout && <ViewOutGateKafkaConfig kafkaOutGate={item.outbound} />}
-				{Ibmout && (<ViewOutGateIbmMqConfig imbOutGate={item.inbound} />)}
-				{Restout && <ViewOutGateRestConfig restOutGate={item.inbound} />}
+				{Kafkaout && <ViewOutGateKafkaConfig kafkaOutGate={currentOutBound} />}
+				{Ibmout && (<ViewOutGateIbmMqConfig imbOutGate={currentOutBound} />)}
+				{Restout && <ViewOutGateRestConfig restOutGate={currentOutBound} />}
 
 				{/* {Ingate && <div><IngateConfig></IngateConfig></div>} */}
+				
+				{ Ingate && (<ViewGate />)	}
 				{/* convert */}
-				{Convert && (<ViewStageConvert />)}
+				{Convert && (<ViewStageConvert transData={item.transdata}/>)}
+				{	RouteFlip && (<ViewRouteFlip/>)}
+				{Outgate && (<ViewGate  />)	}
 			</Box>
 		</Box>
 	);

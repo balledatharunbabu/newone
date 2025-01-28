@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import '../Style/Configuration/Replay.css';
-import HeaderTwo from '../Components/headerTwo'
+import HeaderTwo from '../Components/headerTwo';
+
 const ViewReplay = () => {
     const [details, setDetails] = useState([]);
     const showReplays= () => {
-        const scenarioDetailsUrl = `http://localhost:9090/getAllReplays`;
+        const scenarioDetailsUrl = `http://172.17.2.77:9090/getAllReplays`;
         
         axios.get(scenarioDetailsUrl)
             .then(response => {
@@ -18,7 +19,7 @@ const ViewReplay = () => {
 
     const handleReplay = (flowId, exceptionRoute) => {
         console.log(flowId,exceptionRoute)
-        const replayUrl = `http://localhost:9090/getReplay?flowId=${flowId}&exceptionRoute=${exceptionRoute}`;
+        const replayUrl = `http://172.17.2.77:9090/getReplay?flowId=${flowId}&exceptionRoute=${exceptionRoute}`;
         axios.get(replayUrl)
             .then(response => {
                 console.log(response.data);

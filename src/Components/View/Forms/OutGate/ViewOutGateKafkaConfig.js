@@ -13,6 +13,9 @@ import {
 const ViewOutGateKafkaConfig = ({ kafkaOutGate }) => {
 	const [showProperties, setShowProperties] = useState(false);
 
+	{
+		console.log("outgate kafka ", kafkaOutGate)
+	}
 	const kafkaOutConfig = {
 		topicName: `${kafkaOutGate.topic}`,
 		brokerUrl: kafkaOutGate.brokerurl,
@@ -54,7 +57,7 @@ const ViewOutGateKafkaConfig = ({ kafkaOutGate }) => {
 						<TableCell>Topic Name:</TableCell>
 						<TableCell>
 							<TextField
-								value={kafkaOutConfig.topicName}
+								value={kafkaOutConfig.topicName != null ? kafkaOutConfig.topicName : ""}
 								variant="outlined"
 								size="small"
 								fullWidth

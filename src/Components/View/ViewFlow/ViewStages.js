@@ -191,13 +191,14 @@ export function Selector() {
 		>
 			<Typography
 				sx={{
-					fontSize: 10,
-					fontWeight: 'bold',
+					fontSize: 7,
+					// fontWeight: 'bold',
 					color: '#ffffff',
 					textAlign: 'center',
+					
 				}}
 			>
-				InGate
+				RouteFlip
 			</Typography>
 			{/* <Avatar
 			alt="ActiveMQ"

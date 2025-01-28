@@ -38,20 +38,23 @@ const handleChange = (event) => {
                                 <td>DataConvert:</td>
                                 <td >
                                     <select style={{ width: '100px' }}
-                                    
                                     onChange={handleChange}
                                     >
-                                        <option value='JSON'>JSON</option>
-                                        <option value='XML'>XML</option>
-                                     
+                                        <option value='null' >None</option> 
+                                        <option value='Json-Xml'>Json-to-Xml</option>
+                                        <option value='Xml-Json'>Xml-to-Json</option>
+
+                                        <option value='Csv-Xml'>Csv-to-Xml</option>
+                                        <option value='Csv-Json'>Csv-to-Json</option>
+
+                                        <option value='Json-Csv'>Json-to-Csv</option>
+                                        <option value='Xml-Csv'>Xml-to-Csv</option>
                                     </select>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
                     {/* <center><button  onClick={onSubmitHandler} className="submitButton" style={{backgroundColor:'#434779'}} >Save</button></center> */}
-
                 </form>
             </div>
         </>

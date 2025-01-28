@@ -260,7 +260,9 @@ const DnDFlow = () => {
   
       <div>
       {Amq && ( <div><AmqConfig /></div>)}
+
       {Amqout && ( <div><AmqConfigout /></div>)}
+      
       {Kafka && <div><KafkaConfig/></div>}
       {Kafkaout && <div><KafkaConfigout/></div>}
 
