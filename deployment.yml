@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flow-app
+  labels:
+    app: flow-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flow-app
+  template:
+    metadata:
+      labels:
+        app: flow-app
+    spec:
+      containers:
+      - name: flow-frontend
+        image: tharunbabu/flow-ui
+        ports:
+        - containerPort: 3000
