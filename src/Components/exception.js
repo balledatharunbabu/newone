@@ -66,7 +66,7 @@ const ExceptionDetails = () => {
     // Fetch Exception Details
     const getExceptionDetails = (flowId, flowName, region) => {
 
-        const scenarioDetailsUrl = `http://172.17.2.77:9090/exception?flowId=${flowId}&flowName=${flowName}&region=${region}`;
+        const scenarioDetailsUrl = `http://backend:9090/exception?flowId=${flowId}&flowName=${flowName}&region=${region}`;
         axios.get(scenarioDetailsUrl)
             .then((response) => {
                 setDetails(response.data);
@@ -74,7 +74,7 @@ const ExceptionDetails = () => {
             })
             .catch((error) => console.error('Error fetching data:', error));
 
-        const exceptionFlowDetails = `http://172.17.2.77:9090/search?flowId=${flowId}&flowName=${flowName}&region=${region}`;
+        const exceptionFlowDetails = `http://backend:9090/search?flowId=${flowId}&flowName=${flowName}&region=${region}`;
         console.log(exceptionFlowDetails)
         axios.get(exceptionFlowDetails)
             .then((response) => {

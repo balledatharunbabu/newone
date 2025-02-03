@@ -129,7 +129,7 @@ export default function AppBarComponent() {
 
         };
         console.log(JSON.stringify(flowData))
-        let response = await fetch("http://172.17.1.165:9090/stream", {
+        let response = await fetch("http://backend:9090/stream", {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             // body: JSON.stringify( {amqadapter,kafkaadapter}),

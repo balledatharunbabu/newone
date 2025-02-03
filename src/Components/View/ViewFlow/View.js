@@ -63,7 +63,7 @@ export default function View({ }) {
 		// setValidateSearchItem(false); // Reset the items list before the search
 		try {
 			console.log("search fields ", searchFields.id, searchFields.name, searchFields.region)
-			const search = `http://172.17.2.77:9090/search?flowId=${searchFields.id}&flowName=${searchFields.name}&region=${searchFields.region}`;
+			const search = `http://backend:9090/search?flowId=${searchFields.id}&flowName=${searchFields.name}&region=${searchFields.region}`;
 			const response = await axios.get(search);
 			// Log the response data
 			console.log("test 001", response.data);
@@ -82,7 +82,7 @@ export default function View({ }) {
 
 	const handleSearchAll = async (event) => {
 		event.preventDefault();
-		const viewAll = `http://172.17.2.77:9090/showAll`;
+		const viewAll = `http://backend:9090/showAll`;
 		axios.get(viewAll)
 			.then(response => {
 				// setItems(response.data);
