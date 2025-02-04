@@ -152,7 +152,6 @@ export default function AppBarComponent() {
         setDrawerOpen(!drawerOpen);
     };
 
-
     return (
 
         <>
